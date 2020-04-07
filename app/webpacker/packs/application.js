@@ -16,5 +16,8 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+// Import images
+const images = require.context('../src/images', true)
+
 // Import bootstrap
 import 'bootstrap/dist/js/bootstrap';
