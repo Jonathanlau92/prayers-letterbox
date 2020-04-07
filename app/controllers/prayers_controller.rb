@@ -7,6 +7,9 @@ class PrayersController < ApplicationController
 
   end
 
+  def show
+
+  end
 
   private
   def prayer_params
