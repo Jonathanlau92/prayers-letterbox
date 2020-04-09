@@ -1,11 +1,33 @@
 <div class="container">
-  <h1 class="text-primary"> Hello God! </h1>
+  <h1><strong>  This, then, is how you should pray: </strong></h1>
+  <p>   Our Father in heaven,
+        hallowed be your name,
+        your kingdom come,
+        your will be done,
+        on earth as it is in heaven.
+        Give us today our daily bread.
+        And forgive us our debts,
+        as we also have forgiven our debtors.
+        And lead us not into temptation,
+        but deliver us from the evil one. (Mat 6:9-13)
+  </p>
+  <div class="row mb-3">
+    <div class="col-sm-6">
+      <%= image_pack_tag 'media/src/images/prayer-bible.jpg', alt: 'prayer-hand', class: 'img-fluid rounded float-left'%>
+    </div>
+  </div>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 text-center">
       <a class="btn btn-success" href="/prayers/new">Make a prayer</a>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 text-center">
       <a class="btn btn-primary" href="/prayers/show">Pray for someone</a>
     </div>        
   </div>
-</div> 
+</div>
+<hr>
+<footer>
+  <div class="footer-copyright text-center py-2">Providence Presbyterian Church 2020:
+    <a href="/"> COVID-19 Prayer Support</a>
+  </div>
+</footer>
