@@ -1,16 +1,16 @@
-<div class="container">
-	<form>
-	<div class="form-group">
-			<label for="exampleInputEmail1">Request</label>
-			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
-	</div>
-	<div class="form-group">
-			<label for="exampleInputPassword1">Name (Optional)</label>
-			<input type="text" class="form-control" id="" placeholder="">
-	</div>
-	<button type="submit" class="btn btn-primary">Submit</button>
-	</form>
+<div class="container pb-2">
+	<%= form_for @prayer do |f|%>
+    <div class="form-group">
+      <%= f.label 'Your Name (Optional)' %>
+      <%= text_field_tag 'your-name', "", class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label 'Prayer Request' %>
+      <%= f.text_area :request, class: 'form-control', rows: "3", required: true %>
+    </div>
+    <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
+  <% end %>
 </div>
-<footer>
+<%# <footer>
   <a href="/">Back to Home</a>
-</footer> 
+</footer>  %>
