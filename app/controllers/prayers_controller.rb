@@ -22,7 +22,7 @@ class PrayersController < ApplicationController
   end
 
   def show
-
+    @prayer = Prayer.find(1)
   end
 
   private
