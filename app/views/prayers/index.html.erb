@@ -15,6 +15,26 @@
     <div class="col-sm-6">
       <%= image_pack_tag 'media/src/images/prayer-bible.jpg', alt: 'prayer-hand', class: 'img-fluid rounded float-left'%>
     </div>
+    <div class="col-sm-6">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Prayer Requests</th>
+            <th scope="col">Posted</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @prayers.limit(10).order(created_at: :desc).each_with_index do |prayer, index|%>
+            <tr>
+              <th scope="row"><%= index + 1%></th>
+              <td><%= prayer.request%></td>
+              <td><%= prayer.created_at.strftime('%d-%m-%y %H:%M')%>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
   <div class="row">
     <div class="col-md-6 text-center">
