@@ -1,24 +1,12 @@
-# README
+# Prayer LetterBox
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An application to bring brothers and sisters in Christ together in prayers.
+Features of the app:
 
-Things you may want to cover:
+1. Share a prayer requests
+2. Pray for someone
 
-* Ruby version
+## Development Details
 
-* System dependencies
+### To test email sending
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
