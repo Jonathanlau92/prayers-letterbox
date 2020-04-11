@@ -25,6 +25,13 @@ class PrayersController < ApplicationController
     @prayer = Prayer.find(1)
   end
 
+  def send_prayer_email
+    @prayer = Prayer.find(params[:prayer])
+    PrayerMailer.send_prayer_email(@prayer, params[:email]).deliver_now
+    flash[:success] = "Your prayer request has been sent to your email."
+    redirect_to root_path
+  end
+
   private
   def prayer_params
     params.require(:prayer).permit(:request, :user_particulars, :is_deleted, :prayer_count)

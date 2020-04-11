@@ -1,7 +1,10 @@
 <div class="container">
   <label>Request</label>
   <p><%=@prayer.request%></p>
+  <%= form_with url: send_prayer_email_path(prayer: @prayer) do |f| %>
+  	<div class="form-group">
+  		<%= text_field_tag 'email', "", placeholder: 'Your email...', class: 'form-control col-sm-6' %>
+  	</div>
+  	<%= f.submit 'Send email', class: 'btn btn-sm btn-warning' %>
+  <% end %>
 </div>
-<footer>
-  <a href="/">Back to Home</a>
-</footer> 
