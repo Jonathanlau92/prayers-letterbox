@@ -36,6 +36,13 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # Mailcatcher setting
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+
+  # To test email images or app assets in localhost (mailcatcher)
+  config.action_mailer.asset_host = "http://localhost:3000"
+  
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
