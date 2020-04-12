@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   resources :prayers
   post 'send_prayer_email', to: 'prayers#send_prayer_email', as: :send_prayer_email
 
+  get 'about-us', to: 'pages#about_us', as: :about_us
+
   root to: 'prayers#index'
 end
