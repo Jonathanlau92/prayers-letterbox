@@ -9,6 +9,8 @@ class PrayersController < ApplicationController
 
   def create
     @prayer = Prayer.new(prayer_params)
+    @prayer.is_deleted=false
+    @prayer.prayer_count=0
     @prayer.user_particulars = {
       name: params[:your_name]
     }
@@ -22,11 +24,14 @@ class PrayersController < ApplicationController
   end
 
   def show
-    @prayer = Prayer.find(1)
+    @prayer = Prayer.find(rand(1..Prayer.count))
   end
 
   def send_prayer_email
-    @prayer = Prayer.find(params[:prayer])
+    id=params[:prayer]
+    @prayer = Prayer.find(id)
+    Prayer.increment_counter(:prayer_count, id)
+    @prayer.save
     PrayerMailer.send_prayer_email(@prayer, params[:email]).deliver_now
     flash[:success] = "Your prayer request has been sent to your email."
     redirect_to root_path
