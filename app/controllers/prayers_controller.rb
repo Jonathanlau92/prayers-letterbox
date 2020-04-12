@@ -25,7 +25,6 @@ class PrayersController < ApplicationController
 
   def show
     @prayer = Prayer.find(rand(1..Prayer.count))
-    
   end
 
   def send_prayer_email
