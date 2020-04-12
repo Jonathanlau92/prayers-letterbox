@@ -9,6 +9,8 @@ class PrayersController < ApplicationController
 
   def create
     @prayer = Prayer.new(prayer_params)
+    @prayer.is_deleted=false
+    @prayer.prayer_count=0
     @prayer.user_particulars = {
       name: params[:your_name]
     }
@@ -22,7 +24,8 @@ class PrayersController < ApplicationController
   end
 
   def show
-    @prayer = Prayer.find(1)
+    @prayer = Prayer.find(rand(1..Prayer.count))
+    
   end
 
   def send_prayer_email
