@@ -30,7 +30,7 @@ class PrayersController < ApplicationController
   def send_prayer_email
     id=params[:prayer]
     @prayer = Prayer.find(id)
-    Prayer.increment_counter(:prayer_count, id)
+    @prayer.increment(:prayer_count)
     if @prayer.save
       PrayerMailer.send_prayer_email(@prayer, params[:email]).deliver_now
       flash[:success] = "Your prayer request has been sent to your email."

@@ -11,37 +11,36 @@
         And lead us not into temptation,
         but deliver us from the evil one. (Mat 6:9-13)
   </p>
-  <div class="row mb-3">
-    <div class="col-sm-6">
-      <%= image_pack_tag 'media/src/images/prayer-bible.jpg', alt: 'prayer-hand', class: 'img-fluid rounded float-left'%>
+  <div class="row mb-5 mt-4">
+    <div id="index_make_prayer" class="col-sm-6 mb-3">
+      <div class="card">
+        <%= image_pack_tag 'media/src/images/prayer-bible.jpg', alt: 'prayer-hand', class: 'img-fluid rounded float-left'%>
+        <div class="card-body">
+          <p class="card-text">Have something you need support in? Try this!</p>
+          <%= link_to 'Make a Prayer', new_prayer_path, class: 'btn btn-success' %>
+        </div>
+      </div>
     </div>
-    <div class="col-sm-6">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Prayer Requests</th>
-            <th scope="col">Posted</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @prayers.limit(10).order(created_at: :desc).each_with_index do |prayer, index|%>
-            <tr>
-              <th scope="row"><%= index + 1%></th>
-              <td><%= prayer.request%></td>
-              <td><%= prayer.created_at.strftime('%d-%m-%y %H:%M')%>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+    <div id="index_show_prayers" class="col-sm-6">
+      <div class="row">
+        <% @prayers.where(is_deleted:false).limit(6).order(created_at: :desc).each_with_index do |prayer, index|%>
+          <div class="col-sm-4 mb-2">
+            <div class="card mb-2 box-shadow">
+              <div class="card-header">
+                Pray for...
+              </div>
+              <div class="card-body">
+                <p class="card-text text-truncate"><%= prayer.request %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <%= link_to 'Pray for someone', '/prayers/show', class: 'btn btn-primary' %>
+        </div>     
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6 text-center">
-      <%= link_to 'Make a prayer', new_prayer_path(), class: 'btn btn-success' %>
-    </div>
-    <div class="col-md-6 text-center">
-      <%= link_to 'Pray for someone', '/prayers/show', class: 'btn btn-primary' %>
-    </div>        
   </div>
 </div>

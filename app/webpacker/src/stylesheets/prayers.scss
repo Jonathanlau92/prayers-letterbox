@@ -3,35 +3,50 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Old+Standard+TT&display=swap');
-
-h1{
-  font-family: 'Montserrat', sans-serif;
+h1 {
+    font-family: 'Montserrat', sans-serif;
 }
 
-h2{
-  font-family: 'Raleway', sans-serif;
+h2 {
+    font-family: 'Raleway', sans-serif;
 }
 
-p.lord-prayer{
-  font-size: 20px;
-  font-family: 'Old Standard TT', serif;
+p.lord-prayer {
+    font-size: 20px;
+    font-family: 'Old Standard TT', serif;
 }
 
 .about-font {
-  font-size: 20px;
-  font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #disp_prayer {
-  font-size: 25px;
+    font-size: 25px;
 }
 
 #new_prayer {
-  width: 40%;
+    width: 40%;
 }
 
 @media only screen and (max-width: 768px) {
-  #new_prayer {
+    #new_prayer {
+        width: 90%;
+    }
+}
+
+#index_make_prayer .card-text {
+    font-size: 18px;
+}
+
+#index_show_prayers .card {
+    height: 200px;
+}
+
+#index_show_prayers .card-text {
+    font-size: 18px;
+}
+
+#new_prayer {
     width: 90%;
-  }
 }
