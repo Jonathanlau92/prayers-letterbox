@@ -1,10 +1,15 @@
-<div class="container">
-  <label>Request</label>
-  <p><%=@prayer.request%></p>
+<div class="container mt-5">
+  <div class="row mb-3">
+    <div id="disp_prayer" class="col-sm-12 text-wrap">
+      <label><b>Pray for: </b></label>
+      <%=@prayer.request%>
+    </div>
+  </div>
   <%= form_with url: send_prayer_email_path(prayer: @prayer) do |f| %>
     <div class="form-group">
-      <%= text_field_tag 'email', "", placeholder: 'Your email...', class: 'form-control col-sm-6' %>
+      <label>Receive this prayer request in your inbox!</label>
+      <%= text_field_tag 'email', "", placeholder: 'Email', class: 'form-control col-sm-6' %>
     </div>
-    <%= f.submit 'Send email', class: 'btn btn-sm btn-warning' %>
+    <%= f.submit 'Send', class: 'btn btn-sm btn-warning' %>
   <% end %>
 </div>

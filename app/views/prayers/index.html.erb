@@ -38,11 +38,10 @@
   </div>
   <div class="row">
     <div class="col-md-6 text-center">
-      <a class="btn btn-success" href="/prayers/new">Make a prayer</a>
+      <%= link_to 'Make a prayer', new_prayer_path(), class: 'btn btn-success' %>
     </div>
     <div class="col-md-6 text-center">
-      <%= link_to 'Pray for someone', prayer_path(Prayer.find(1)), class: 'btn btn-primary' %>
-      <!-- <a class="btn btn-primary" href="/prayers/show">Pray for someone</a> -->
+      <%= link_to 'Pray for someone', '/prayers/show', class: 'btn btn-primary' %>
     </div>        
   </div>
 </div>

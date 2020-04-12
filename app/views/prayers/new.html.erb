@@ -1,13 +1,15 @@
-<div class="container pb-2">
-	<%= form_for @prayer do |f|%>
-    <div class="form-group">
-      <%= f.label 'Your Name (Optional): ' %>
-      <%= text_field_tag 'your_name', "", class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label 'Prayer Request: ' %>
-      <%= f.text_area :request, class: 'form-control', rows: "3", required: true %>
-    </div>
-    <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
-  <% end %>
+<div class="container pb-5 pt-5">
+  <div class="row justify-content-center">
+    <%= form_for @prayer do |f|%>
+      <div class="form-group">
+        <%= f.label 'Your Name (Optional): ' %>
+        <%= text_field_tag 'your_name', "", class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label 'Prayer Request: ' %>
+        <%= f.text_area :request, class: 'form-control', rows: "5", required: true %>
+      </div>
+      <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
+    <% end %>
+  </div>
 </div>
