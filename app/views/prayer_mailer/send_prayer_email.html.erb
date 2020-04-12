@@ -4,13 +4,16 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Thank you for joining us to pray for each other.</h1>
-    <p>
-      <%= @prayer.request%>
-    </p>
-    <p>
-      To follow us, just click on this link: .
-    </p>
-    <p>Thanks for joining and have a great day!</p>
+    <div class="container">
+      <h1>Thank you for joining us to pray for each other.</h1>
+      <p>
+        Prayer item: <%= @prayer.request%>
+      </p>
+      <p>
+        To follow us, just click on this link: 
+        <%= link_to 'Prayer Letter-Box', 'https://prayers-letterbox.herokuapp.com/' %>
+      </p>
+      <p>Thanks for joining and have a great day!</p>
+    </div>
   </body>
 </html>

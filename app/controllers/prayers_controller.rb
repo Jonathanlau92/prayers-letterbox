@@ -31,10 +31,14 @@ class PrayersController < ApplicationController
     id=params[:prayer]
     @prayer = Prayer.find(id)
     Prayer.increment_counter(:prayer_count, id)
-    @prayer.save
-    PrayerMailer.send_prayer_email(@prayer, params[:email]).deliver_now
-    flash[:success] = "Your prayer request has been sent to your email."
-    redirect_to root_path
+    if @prayer.save
+      PrayerMailer.send_prayer_email(@prayer, params[:email]).deliver_now
+      flash[:success] = "Your prayer request has been sent to your email."
+      redirect_to root_path
+    else
+      flash[:alert] = "Error sending the email. Please try again later!"
+      redirect_to root_path
+    end
   end
 
   private

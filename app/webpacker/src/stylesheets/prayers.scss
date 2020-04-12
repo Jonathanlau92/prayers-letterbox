@@ -1,5 +1,24 @@
+// Import google fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Raleway:700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Old+Standard+TT&display=swap');
+h1 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h2 {
+    font-family: 'Raleway', sans-serif;
+}
+
+p.lord-prayer {
+    font-size: 20px;
+    font-family: 'Old Standard TT', serif;
+}
+
 .about-font {
     font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #disp_prayer {
@@ -26,4 +45,8 @@
 
 #index_show_prayers .card-text {
     font-size: 18px;
+}
+
+#new_prayer {
+    width: 90%;
 }
