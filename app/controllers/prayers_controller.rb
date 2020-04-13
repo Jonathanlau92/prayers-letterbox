@@ -24,7 +24,8 @@ class PrayersController < ApplicationController
   end
 
   def show
-    @prayer = Prayer.find(rand(1..Prayer.count))
+    # Order by random then call the first instance. This is to prevent missing ID in between (for eg, if we delete prayer with ID=3)
+    @prayer = Prayer.order("RANDOM()").first
   end
 
   def send_prayer_email
