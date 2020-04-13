@@ -9,8 +9,8 @@ class PrayersController < ApplicationController
 
   def create
     @prayer = Prayer.new(prayer_params)
-    @prayer.is_deleted=false
-    @prayer.prayer_count=0
+    @prayer.is_deleted = false
+    @prayer.prayer_count = 0
     @prayer.user_particulars = {
       name: params[:your_name]
     }

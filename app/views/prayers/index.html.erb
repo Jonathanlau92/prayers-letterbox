@@ -23,14 +23,14 @@
     </div>
     <div id="index_show_prayers" class="col-sm-6">
       <div class="row">
-        <% @prayers.where(is_deleted:false).limit(6).order(created_at: :desc).each_with_index do |prayer, index|%>
+        <% @prayers.where(is_deleted: false).limit(6).order(created_at: :desc).each_with_index do |prayer, index|%>
           <div class="col-sm-4 mb-2">
             <div class="card mb-2 box-shadow">
               <div class="card-header">
                 Pray for...
               </div>
               <div class="card-body">
-                <p class="card-text text-truncate"><%= prayer.request %></p>
+                <p class="card-text"><%= prayer.request %></p>
               </div>
             </div>
           </div>
