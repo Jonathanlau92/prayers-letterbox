@@ -29,9 +29,20 @@ p.lord-prayer {
     width: 40%;
 }
 
+.custom-scrollbar {
+    position: relative;
+    height: 480px;
+    overflow: auto;
+}
+
 @media only screen and (max-width: 768px) {
     #new_prayer {
         width: 90%;
+    }
+    .custom-scrollbar {
+        position: relative;
+        height: 368px;
+        overflow: auto;
     }
 }
 
@@ -47,6 +58,6 @@ p.lord-prayer {
     font-size: 18px;
 }
 
-#new_prayer {
-    width: 90%;
+.table-wrapper-scroll-y {
+    display: block;
 }
