@@ -15,8 +15,8 @@
     <div id="index_make_prayer" class="col-sm-6 mb-3">
       <div class="card">
         <%= image_pack_tag 'media/src/images/prayer-bible.jpg', alt: 'prayer-hand', class: 'img-fluid rounded float-left'%>
-        <div class="card-body">
-          <p class="card-text">Have something you need support in? Try this!</p>
+        <div class="card-body text-center">
+          <p class="card-text about-font">Have something you need support in? Try this!</p>
           <%= link_to 'Make a Prayer', new_prayer_path, class: 'btn btn-success' %>
         </div>
       </div>
@@ -27,12 +27,14 @@
           <thead>
             <tr>
               <th scope="col"><h5>Prayer Requests</h5></th>
+              <th scope="col"><h5>User</h5></th>
             </tr>
           </thead>
           <tbody>
             <% @prayers.where(is_deleted:false).limit(10).order(created_at: :desc).each_with_index do |prayer, index|%>
               <tr>
                 <td><%= prayer.request%></td>
+                <td><%= prayer.user_particulars['name'].present? ? prayer.user_particulars['name'] : 'Anonyomous' %></td>
               </tr>
             <% end %>
           </tbody>
