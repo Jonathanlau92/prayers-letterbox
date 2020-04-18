@@ -32,6 +32,18 @@ gem 'dotenv-rails', groups: [:development, :test]
 # Rollbar for error monitoring
 gem 'rollbar'
 
+#Authentication
+gem 'devise'
+
+#Admin portal
+gem "administrate"
+
+#Roles
+gem "rolify"
+
+#Authorization
+gem "pundit"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
