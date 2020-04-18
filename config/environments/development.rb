@@ -39,6 +39,7 @@ Rails.application.configure do
   # Mailcatcher setting
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # To test email images or app assets in localhost (mailcatcher)
   config.action_mailer.asset_host = "http://localhost:3000"
