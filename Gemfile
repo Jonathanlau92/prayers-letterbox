@@ -29,6 +29,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Env secrets for username and password of API integration
 gem 'dotenv-rails', groups: [:development, :test]
 
+# Rollbar for error monitoring
+gem 'rollbar'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
