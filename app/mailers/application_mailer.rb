@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'faithfulnessfellowship@ppc.com'
+  default from: 'no-reply@plb.com'
   layout 'mailer'
 end
