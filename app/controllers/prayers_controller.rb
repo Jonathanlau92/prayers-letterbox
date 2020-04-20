@@ -42,6 +42,18 @@ class PrayersController < ApplicationController
     end
   end
 
+  def report_spam
+    @prayer = Prayer.find(params[:prayer_id])
+    @prayer.is_deleted = true
+    if @prayer.save
+      flash[:success] = "Admin will vet through your spam request."
+      redirect_to root_path
+    else
+      flash[:alert] = "Error reporting spam. Please try again later."
+      redirect_to root_path
+    end
+  end
+
   private
   def prayer_params
     params.require(:prayer).permit(:request, :user_particulars, :is_deleted, :prayer_count)

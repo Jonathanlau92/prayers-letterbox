@@ -34,7 +34,11 @@
             <% @prayers.where(is_deleted:false).limit(10).order(created_at: :desc).each_with_index do |prayer, index|%>
               <tr>
                 <td><%= prayer.request%></td>
-                <td><%= prayer.user_particulars['name'].present? ? prayer.user_particulars['name'] : 'Anonyomous' %></td>
+                <td>
+                  <%= prayer.user_particulars['name'].present? ? prayer.user_particulars['name'] : 'Anonyomous' %>
+                  <br>
+                  <%= link_to 'Report as spam', report_spam_path(prayer_id: prayer.id), method: :post, class: 'small' %>
+                </td>
               </tr>
             <% end %>
           </tbody>
