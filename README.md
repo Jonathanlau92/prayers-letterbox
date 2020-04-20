@@ -26,7 +26,11 @@ To setup Heroku CLI: [Heroku CLI](https://devcenter.heroku.com/articles/heroku-c
 
 Add git remote to existing Heroku app: [Add git remote](https://devcenter.heroku.com/articles/git#creating-a-heroku-remote)
 
-Push your changes to Heroku using `git push heroku master`, where heroku is the name of your remote
+Rename your remote in this convention: (heroku -> Production Env), (staging -> Staging Env)
+
+See existing remote using `git remote -v`
+
+Push your changes to Heroku using `git push heroku master` (to production in this case), where heroku is the name of your remote
 
 If there are changes to the database, migrate it by running `heroku run rails db:migrate --app <APP_NAME>`
 
