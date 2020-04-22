@@ -37,7 +37,7 @@
                 <td>
                   <%= prayer.user_particulars['name'].present? ? prayer.user_particulars['name'] : 'Anonyomous' %>
                   <br>
-                  <%= link_to 'Report as spam', report_spam_path(prayer_id: prayer.id), method: :post, class: 'small' %>
+                  <%= link_to 'Report as spam', report_spam_path(prayer_id: prayer.id), method: :post, data: {confirm: 'Are you sure this is spam?'}, class: 'small' %>
                 </td>
               </tr>
             <% end %>

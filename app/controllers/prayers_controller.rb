@@ -33,7 +33,7 @@ class PrayersController < ApplicationController
     @prayer = Prayer.find(id)
     @prayer.increment(:prayer_count)
     if @prayer.save
-      PrayerMailer.send_prayer_email(@prayer, params[:email]).deliver_now
+      PrayerMailer.send_prayer_email(@prayer, params[:email]).deliver_later
       flash[:success] = "Your prayer request has been sent to your email."
       redirect_to root_path
     else
@@ -45,6 +45,8 @@ class PrayersController < ApplicationController
   def report_spam
     @prayer = Prayer.find(params[:prayer_id])
     @prayer.is_deleted = true
+    # Send email to admin email to report spam
+    PrayerMailer.send_report_spam_email(@prayer).deliver_now
     if @prayer.save
       flash[:success] = "Admin will vet through your spam request."
       redirect_to root_path

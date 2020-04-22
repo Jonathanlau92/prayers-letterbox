@@ -4,4 +4,9 @@ class PrayerMailer < ApplicationMailer
     @email = email
     mail(to: @email, subject: '[Prayer Requests]')
   end
+
+  def send_report_spam_email(prayer)
+  	@prayer = prayer
+  	mail(to: 'prayersletterbox@gmail.com', subject: '[Prayer has been reported spam]')
+  end
 end
