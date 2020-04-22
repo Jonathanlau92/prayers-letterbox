@@ -23,18 +23,33 @@ class PrayersController < ApplicationController
     end
   end
 
-  def show
-    # Order by random then call the first instance. This is to prevent missing ID in between (for eg, if we delete prayer with ID=3)
-    @prayer = Prayer.where(is_deleted: false).order("RANDOM()").first
+  def prayer_request
+    if params[:type] == "single"
+      # Order by random then call the first instance. This is to prevent missing ID in between (for eg, if we delete prayer with ID=3)
+      @prayer = Prayer.where(is_deleted: false).order("RANDOM()").first
+    elsif params[:type] == "multiple"
+      # Currently multiple means 3 prayers
+      @prayers = Prayer.where(is_deleted: false).order("RANDOM()").sample(3)
+    end
   end
 
   def send_prayer_email
-    id=params[:prayer]
-    @prayer = Prayer.find(id)
-    @prayer.increment(:prayer_count)
-    if @prayer.save
+    # params[:prayer] returns an ID or an array of ID, depending on single or multiple
+    if params[:type] == "single"
+      @prayer = Prayer.find(params[:prayer])
+      @prayer.increment(:prayer_count)
+      @prayer.save
       PrayerMailer.send_prayer_email(@prayer, params[:email]).deliver_later
       flash[:success] = "Your prayer request has been sent to your email."
+      redirect_to root_path
+    elsif params[:type] == "multiple"
+      @prayers = params[:prayer].collect {|i| Prayer.where(id: i) }.flatten
+      @prayers.each do |prayer|
+        prayer.increment(:prayer_count)
+        prayer.save
+      end
+      PrayerMailer.send_multiple_prayers(@prayers, params[:email]).deliver_later
+      flash[:success] = "Your prayer requests has been sent to your email."
       redirect_to root_path
     else
       flash[:alert] = "Error sending the email. Please try again later!"

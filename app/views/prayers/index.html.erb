@@ -44,9 +44,12 @@
           </tbody>
         </table>
       </div>
-      <div class="row mt-2 text-center">
-        <div class="col-sm-12">
-          <%= link_to 'Pray for someone', '/prayers/show', class: 'btn btn-primary' %>
+      <div class="row mt-3 text-center">
+        <div class="col-sm-6">
+          <%= link_to 'Pray for a single request', prayer_request_path(type: 'single'), class: 'btn btn-primary' %>
+        </div>
+        <div class="col-sm-6">
+          <%= link_to 'Pray for multiple requests', prayer_request_path(type: 'multiple'), class: 'btn btn-primary' %>
         </div>     
       </div>
     </div>
