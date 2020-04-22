@@ -7,7 +7,8 @@ Rails.application.routes.draw do
     end
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :prayers
+  resources :prayers, except: :show
+  get '/prayer-request', to: 'prayers#prayer_request', as: :prayer_request
   post 'send_prayer_email', to: 'prayers#send_prayer_email', as: :send_prayer_email
   post 'report-spam', to: 'prayers#report_spam', as: :report_spam
 

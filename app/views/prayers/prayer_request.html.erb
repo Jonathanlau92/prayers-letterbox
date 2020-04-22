@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <div class="row">
+    <div id="disp_prayer" class="col-sm-12 text-wrap">
+      <label><b>Pray for: </b></label>
+      <% if params[:type] == "single" %>
+        <%=@prayer.request%>
+        <div class="row mb-3">
+          <div class="col-sm-12">
+            <% unless @prayer.user_particulars['name'].empty? %>
+              <i>Submitted by:</i> <%= @prayer.user_particulars['name'] %>
+            <% end %>
+          </div>
+        </div>
+      <% elsif params[:type] == "multiple"%>
+        <% @prayers.each do |prayer| %>
+          <ul>
+            <li><%= prayer.request %></li>
+          </ul>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <!-- condition to send different variables to email using ternary operator -->
+  <%= form_with url: params[:type] == "single" ? send_prayer_email_path(prayer: @prayer, type: 'single') : send_prayer_email_path(prayer: @prayers, type: 'multiple') do |f| %>
+    <div class="form-group">
+      <label>Receive this prayer request(s) in your inbox!</label>
+      <%= text_field_tag 'email', "", placeholder: 'Email', class: 'form-control col-sm-6' %>
+    </div>
+    <%= f.submit 'Send', class: 'btn btn-sm btn-warning' %>
+  <% end %>
+</div>
