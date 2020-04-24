@@ -10,7 +10,9 @@ class PrayerDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     request: Field::Text,
-    user_particulars: Field::String.with_options(searchable: false),
+    user_particulars: Field::JSONB.with_options(transform: %i[to_h symbolize_keys], advanced_view: {
+      name: Field::String
+    }),
     is_deleted: Field::Boolean,
     prayer_count: Field::Number,
     created_at: Field::DateTime,

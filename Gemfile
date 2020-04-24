@@ -37,6 +37,8 @@ gem 'devise'
 
 #Admin portal
 gem "administrate"
+#Administrate JSON viewer
+gem 'administrate-field-jsonb'
 
 #Roles
 gem "rolify"
