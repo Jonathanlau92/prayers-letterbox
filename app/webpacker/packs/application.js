@@ -22,5 +22,11 @@ const images = require.context('../src/images', true)
 // Import bootstrap
 import 'bootstrap/dist/js/bootstrap';
 
+// For bootstrap popover and tooltip
+document.addEventListener("turbolinks:load", () => {
+  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="popover"]').popover()
+})
+
 // Import font-awesome icons
 import "@fortawesome/fontawesome-free/js/all";
