@@ -28,6 +28,7 @@
             <tr>
               <th scope="col"><h5>Prayer Requests</h5></th>
               <th scope="col"><h5>User</h5></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -37,7 +38,10 @@
                 <td>
                   <%= prayer.user_particulars['name'].present? ? prayer.user_particulars['name'] : 'Anonyomous' %>
                   <br>
-                  <%= link_to 'Report as spam', report_spam_path(prayer_id: prayer.id), method: :post, data: {confirm: 'Are you sure this is spam?'}, class: 'small' %>
+                  <%= link_to report_spam_path(prayer_id: prayer.id), method: :post, class: 'tooltips', data: { toggle: 'tooltip', placement: 'top', original_title: 'Facebook' } do %>
+                    <%= fa_icon('fa-exclamation-circle', type: :solid)%>
+                    <span>Report</span>
+                  <% end %>
                 </td>
               </tr>
             <% end %>
