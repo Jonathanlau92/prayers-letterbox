@@ -61,7 +61,8 @@ class PrayersController < ApplicationController
     @prayer = Prayer.find(params[:prayer_id])
     @prayer.is_deleted = true
     # Send email to admin email to report spam
-    PrayerMailer.send_report_spam_email(@prayer).deliver_now
+    PrayerMailer.send_report_spam_email(@prayer).deliver_later
+    SlackService.new.report_spam_notification(@prayer).deliver
     if @prayer.save
       flash[:success] = "Admin will vet through your spam request."
       redirect_to root_path
