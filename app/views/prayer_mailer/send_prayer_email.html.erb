@@ -5,10 +5,14 @@
   </head>
   <body>
     <div class="container">
-      <h1>Thank you for joining us to pray for each other.</h1>
+      <h2>Thank you for joining us to pray for each other.</h2>
+      <h4>Please pray for:</h4>
       <p>
-        Prayer item: <%= @prayer.request%>
+        <%= @prayer.request%>
       </p>
+      <% unless @prayer.user_particulars['name'].empty? %>
+        <h6>Submitted by: <%= @prayer.user_particulars['name'] %></h6>
+      <% end %>
       <p>
         To follow us, just click on this link: 
         <%= link_to 'Prayer Letter-Box', 'https://prayers-letterbox.herokuapp.com/' %>
@@ -16,4 +20,11 @@
       <p>Thanks for joining and have a great day!</p>
     </div>
   </body>
+  <footer class="footer-email">
+    <i>
+    Always be joyful. Never stop praying. Whatever happens, give thanks, because it is God’s will in Christ Jesus that you do this.
+    <br />
+    1 Thessalonians 5:16-18
+    </i>
+  </footer>
 </html>

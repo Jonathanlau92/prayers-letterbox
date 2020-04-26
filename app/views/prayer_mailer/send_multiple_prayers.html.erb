@@ -7,7 +7,7 @@
     <div class="container">
       <h1>Thank you for joining us to pray for each other.</h1>
       <p>
-        Prayer item:
+        <h4>Please pray for:</h4>
         <% @prayers.each do |prayer| %>
           <ul>
             <li><%= prayer.request%></li>
@@ -21,4 +21,11 @@
       <p>Thanks for joining and have a great day!</p>
     </div>
   </body>
+  <footer class="footer-email">
+    <i>
+    Always be joyful. Never stop praying. Whatever happens, give thanks, because it is God’s will in Christ Jesus that you do this.
+    <br />
+    1 Thessalonians 5:16-18
+    </i>
+  </footer>
 </html>
