@@ -35,3 +35,10 @@ Push your changes to Heroku using `git push heroku master` (to production in thi
 If there are changes to the database, migrate it by running `heroku run rails db:migrate --app <APP_NAME>`
 
 To run rails command on Heroku, do `heroku run <RAILS_COMMANDS> --app <APP_NAME>`
+
+## Logo-style:
+
+Logo PLB Color: #2680e0
+Logo prayer letterbox font style: ADAMCG PRO
+Logo PLB font style: LOBSTER 13
+Logo is credited to: [Logomaker The Hoth](https://logomaker.thehoth.com/)
