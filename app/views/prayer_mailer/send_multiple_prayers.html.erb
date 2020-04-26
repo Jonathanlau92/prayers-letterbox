@@ -1,31 +1,14 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <div class="container">
-      <h1>Thank you for joining us to pray for each other.</h1>
-      <p>
-        <h4>Please pray for:</h4>
-        <% @prayers.each do |prayer| %>
-          <ul>
-            <li><%= prayer.request%></li>
-          </ul>
-        <% end %>
-      </p>
-      <p>
-        To follow us, just click on this link: 
-        <%= link_to 'Prayer Letter-Box', 'https://prayers-letterbox.herokuapp.com/' %>
-      </p>
-      <p>Thanks for joining and have a great day!</p>
-    </div>
-  </body>
-  <footer class="footer-email">
-    <i>
-    Always be joyful. Never stop praying. Whatever happens, give thanks, because it is God’s will in Christ Jesus that you do this.
-    <br />
-    1 Thessalonians 5:16-18
-    </i>
-  </footer>
-</html>
+<h1>Thank you for joining us to pray for each other.</h1>
+<p>
+  <h4>Please pray for:</h4>
+  <% @prayers.each do |prayer| %>
+    <ul>
+      <li><%= prayer.request%></li>
+    </ul>
+  <% end %>
+</p>
+<p>
+  To follow us, just click on this link: 
+  <%= link_to 'Prayer Letter-Box', 'https://prayers-letterbox.herokuapp.com/' %>
+</p>
+<p>Thanks for joining and have a great day!</p>
