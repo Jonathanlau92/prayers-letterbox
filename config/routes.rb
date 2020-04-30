@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
     root to: "prayers#index"
   end
-  devise_for :users
+  devise_for :users, controllers: { confirmations: 'confirmations' }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :prayers, except: :show
   get '/prayer-request', to: 'prayers#prayer_request', as: :prayer_request
