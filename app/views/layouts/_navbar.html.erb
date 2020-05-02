@@ -10,6 +10,11 @@
       <li class="nav-item active">
         <a class="nav-item nav-link" href="/about-us">About Us</a>
       </li>
+      <% if !current_user %>
+        <li class="nav-item active">
+          <a class="nav-item nav-link" href="/users/sign_in">Sign In</a>
+        </li>
+      <% end %>
       <% if current_user %>
         <li class="nav-item active">
           <a class="nav-item nav-link" href="#{destroy_user_session_path}" data-method="delete">Log Out</a>

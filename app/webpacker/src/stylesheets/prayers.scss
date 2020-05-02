@@ -29,6 +29,10 @@ p.lord-prayer {
     width: 40%;
 }
 
+#new_user {
+    width: 50%;
+}
+
 .custom-scrollbar {
     position: relative;
     height: 480px;
@@ -36,7 +40,8 @@ p.lord-prayer {
 }
 
 @media only screen and (max-width: 768px) {
-    #new_prayer {
+    #new_prayer,
+    #new_user {
         width: 90%;
     }
     .custom-scrollbar {
@@ -62,6 +67,6 @@ p.lord-prayer {
     display: block;
 }
 
-svg.icon-font-size{
+svg.icon-font-size {
     font-size: 1.2em !important;
 }
