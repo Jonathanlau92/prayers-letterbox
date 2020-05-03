@@ -25,8 +25,8 @@ p.lord-prayer {
     font-size: 25px;
 }
 
-#new_prayer {
-    width: 40%;
+.form-mobile-width {
+    width: 50%;
 }
 
 .custom-scrollbar {
@@ -36,7 +36,7 @@ p.lord-prayer {
 }
 
 @media only screen and (max-width: 768px) {
-    #new_prayer {
+    .form-mobile-width {
         width: 90%;
     }
     .custom-scrollbar {
@@ -62,6 +62,17 @@ p.lord-prayer {
     display: block;
 }
 
-svg.icon-font-size{
+svg.icon-font-size {
     font-size: 1.2em !important;
+}
+
+.username {
+    color: #000000;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#navbarDropdown .img {
+    border-radius: 50%;
+    width: 10%;
 }
