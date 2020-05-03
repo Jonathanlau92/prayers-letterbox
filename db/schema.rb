@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_03_033735) do
+ActiveRecord::Schema.define(version: 2020_05_03_034359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2020_05_03_033735) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "church"
-    t.string "current_stage"
+    t.text "current_life_stage"
     t.string "name"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
