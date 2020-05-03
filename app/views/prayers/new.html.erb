@@ -1,7 +1,7 @@
 <h3 align="center" class="mt-3">How can we pray for you?</h3>
 <div class="container pb-5 pt-5">
   <div class="row justify-content-center">
-    <%= form_for @prayer do |f|%>
+    <%= form_for @prayer, html:{class: 'form-mobile-width'} do |f|%>
       <div class="form-group">
         <%= f.label 'Your Name (Optional): ' %>
         <%= text_field_tag 'your_name', "", class: 'form-control' %>
