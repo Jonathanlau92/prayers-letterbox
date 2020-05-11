@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>Your profile</h2>
+  <div class="col-sm-4">
+    <div class="row">
+      <%= image_tag(url_for(@user.profile_image))%>
+    </div>
+    <div class="row">
+      <h5> Name: </h5>
+      <p><%= @user.name %></p>
+    </div>
+    <div class="row">
+      <h5> Email: </h5>
+      <p><%= @user.email %></p>
+    </div>
+    <div class="row">
+      <h5> Your Church: </h5>
+      <p><%= @user.church %></p>
+    </div>
+    <div class="row">
+      <h5> Description: </h5>
+      <p><%= @user.current_life_stage %></p>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    
+  </div>
+</div>

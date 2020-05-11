@@ -13,7 +13,11 @@
       <%= f.label 'What is your current life stage? (Optional) ' %>
       <%= f.text_area :current_life_stage, class: 'form-control', rows: "5" %>
     </div>
-    <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
+    <div>
+      <%= f.label 'Upload profile picture'%>
+      <%= f.file_field :profile_image, direct_upload: true, class: 'form-control'%>
+    </div>
+    <%= f.submit 'Submit', class: 'btn btn-sm btn-primary mt-2' %>
   <% end %>
   <%= link_to "Want to change password?", edit_user_registration_path %>
 </div>
