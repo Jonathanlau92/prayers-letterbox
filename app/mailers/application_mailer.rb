@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'no-reply@plb.com'
+  default from: 'prayer-letterbox@plb.com'
   layout 'mailer'
 end

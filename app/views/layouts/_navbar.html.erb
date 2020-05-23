@@ -26,7 +26,7 @@
             <i class="fas fa-user"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <div class='dropdown-item username'><%= current_user.email %></div>
+            <div class='dropdown-item username'><%= link_to current_user.email, user_path(current_user) %></div>
             <div class="dropdown-divider"></div>
             <%= link_to 'Edit Profile', edit_user_path(current_user), class: 'dropdown-item' %>
             <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, class: 'dropdown-item'%>

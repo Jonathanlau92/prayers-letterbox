@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   devise_for :users, controllers: { confirmations: 'confirmations', registrations: "users/registrations", omniauth_callbacks: "users/omniauth_callbacks" }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :users, only: [:edit, :update, :destroy]
+  resources :users, only: [:edit, :update, :destroy, :show]
   resources :prayers, except: :show
   get '/prayer-request', to: 'prayers#prayer_request', as: :prayer_request
   post 'send_prayer_email', to: 'prayers#send_prayer_email', as: :send_prayer_email
