@@ -21,6 +21,9 @@ const images = require.context('../src/images', true)
 // Import bootstrap
 import 'bootstrap/dist/js/bootstrap';
 
+// Custom javascript from src file
+import '../src/javascripts/direct_upload';
+
 // For bootstrap popover and tooltip
 document.addEventListener("turbolinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip()
