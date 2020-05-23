@@ -10,6 +10,10 @@
 // Custom CSS references
 @import '../src/stylesheets/prayers';
 @import '../src/stylesheets/navbar';
+@import '../src/stylesheets/users';
+
+// For active storage direct uploads
+@import '../src/stylesheets/direct_upload';
 
 // Font-awesome icons
 @import '@fortawesome/fontawesome-free';
