@@ -7,4 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 qingfeng = User.create(email: 'jonathan@gmail.com', password: 'password')
+qingfeng.add_role(:user)
+qingfeng.add_role(:admin)
 tim = User.create(email: 'timhou@gmail.com', password: 'password')
+tim.add_role(:user)
+tim.add_role(:admin)
