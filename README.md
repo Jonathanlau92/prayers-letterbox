@@ -39,6 +39,10 @@ To run rails command on Heroku, do `heroku run <RAILS_COMMANDS> --app <APP_NAME>
 ## Logo-style:
 
 Logo PLB Color: #2680e0
+
 Logo prayer letterbox font style: ADAMCG PRO
+
 Logo PLB font style: LOBSTER 13
+
 Logo is credited to: [Logomaker The Hoth](https://logomaker.thehoth.com/)
+
