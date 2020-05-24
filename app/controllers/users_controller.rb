@@ -14,12 +14,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+
+  end
+
   private
   def set_user
     @user = current_user
   end
 
   def user_params
-    params.require(:user).permit(:email, :church, :current_life_stage, :name)
+    params.require(:user).permit(:email, :church, :current_life_stage, :name, :profile_image)
   end
 end
