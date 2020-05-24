@@ -14,7 +14,7 @@ class PrayersController < ApplicationController
     @prayer.user_particulars = {
       name: params[:your_name]
     }
-    if @prayer.save
+    if @prayer.save!
       flash[:success] = "Your prayer request has been received."
       redirect_to root_path
     else
