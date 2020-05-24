@@ -1,21 +1,12 @@
-<h1> Pull Request Description </h1>
+# Pull Request Description 
 
-<p> Task(s) you did: </p>
+Task(s) you did:
 
-<br/>
-<br/>
-<br/>
-<br/>
 
-<p> How did you test it? : </p>
-<br/>
-<br/>
-<br/>
-<br/>
 
-<p> Remarks: </p>
+How did you test it? : 
 
-<br/>
-<br/>
-<br/>
-<br/>
+
+
+Remarks:
+
