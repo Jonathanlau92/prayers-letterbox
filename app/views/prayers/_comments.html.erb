@@ -1,0 +1,9 @@
+<% if params[:type] == "single" %>
+    <hr>
+    <b id="comments">Comments</b>
+    <% if user_signed_in? %>
+        <b>post comment</b>
+    <% else %>
+        <b>please sign up to post comment!</b>
+    <% end %>
+<% end %>
