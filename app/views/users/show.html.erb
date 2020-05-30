@@ -1,32 +1,55 @@
 <div class="container p-4">
   <h2><%= @user.name %></h2>
-  <div class="col-sm-4">
-    <div class="shadow p-3 mb-5 bg-white rounded">
-      <div class="row">
-        <%= image_tag url_for(@user.profile_image), class: "style-profile-image"%>
-      </div>
-      <hr/>
-      <div class="user-content">
-        <p>
-          <span class="h6">Name: </span>
-          <span><%= @user.name %></span>
-        </p>
-        <p>
-          <span class="h6">Email: </span>
-          <span><%= @user.email %></span>
-        </p>
-        <p>
-          <span class="h6">Your Church: </span>
-          <span><%= @user.church %></span>
-        </p>
-        <p>
-          <span class="h6">Description: </span>
-          <span><%= @user.current_life_stage %></span>
-        </p>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="shadow p-3 mb-5 bg-white rounded">
+        <div class="row">
+          <%= image_tag url_for(@user.profile_image), class: "style-profile-image"%>
+        </div>
+        <hr/>
+        <div class="user-content">
+          <p>
+            <span class="h6">Name: </span>
+            <span><%= @user.name %></span>
+          </p>
+          <p>
+            <span class="h6">Email: </span>
+            <span><%= @user.email %></span>
+          </p>
+          <p>
+            <span class="h6">Your Church: </span>
+            <span><%= @user.church %></span>
+          </p>
+          <p>
+            <span class="h6">Description: </span>
+            <span><%= @user.current_life_stage %></span>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-sm-8">
-    
+    <div class="col-sm-8">
+      <h4 class="theme-color text-center"> Your prayer requests 
+        <%= fa_icon('pray 1x', type: :solid, class: 'theme-color icon-font-size') %>
+      </h4>
+      <table class="table table-striped">
+        <thead>
+          <tr class="bg-primary">
+            <th scope="col">#</th>
+            <th scope="col">Prayer</th>
+            <th scope="col">Posted on</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user.prayers.each_with_index do |prayer, index| %>
+            <tr>
+              <th scope="row"><%= index + 1 %></th>
+              <!-- link to prayer SHOW page next time -->
+              <td><%= prayer.request %></td>
+              <td><%= prayer.created_at.strftime('%d/%m/%Y')%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
