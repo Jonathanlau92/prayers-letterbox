@@ -36,13 +36,14 @@
           <tr class="bg-primary">
             <th scope="col">#</th>
             <th scope="col">Prayer</th>
-            <th scope="col">Created On</th>
+            <th scope="col">Posted on</th>
           </tr>
         </thead>
         <tbody>
           <% @user.prayers.each_with_index do |prayer, index| %>
             <tr>
               <th scope="row"><%= index + 1 %></th>
+              <!-- link to prayer SHOW page next time -->
               <td><%= prayer.request %></td>
               <td><%= prayer.created_at.strftime('%d/%m/%Y')%></td>
             </tr>
