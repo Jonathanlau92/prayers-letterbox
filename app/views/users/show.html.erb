@@ -4,7 +4,9 @@
     <div class="col-sm-4">
       <div class="shadow p-3 mb-5 bg-white rounded">
         <div class="row">
-          <%= image_tag url_for(@user.profile_image), class: "style-profile-image"%>
+          <% if @user.profile_image.attached? %>
+            <%= image_tag url_for(@user.profile_image), class: "style-profile-image"%>
+          <% end %>
         </div>
         <hr/>
         <div class="user-content">
