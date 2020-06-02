@@ -1,6 +1,9 @@
 <% if params[:type] == "single" %>
     <hr>
     <b id="comments">Comments</b>
+    <% @prayer.comments.each do |c| %>
+      <%= render 'comments/show', comment: c %>
+    <% end %>
     <% if user_signed_in? %>
       <span id="new_comment">
       <%= form_with url: comments_path, model: @comment, class: 'form-mobile-width' do |f| %>

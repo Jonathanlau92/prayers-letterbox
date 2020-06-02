@@ -1,1 +1,1 @@
-$("#new_comment").append(<%= @comment.content %>);
+$("#new_comment").before("<%= j render 'comments/show', comment: @comment %>");
