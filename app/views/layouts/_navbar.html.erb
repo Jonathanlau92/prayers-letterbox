@@ -21,6 +21,9 @@
         </li>
       <% end %>
       <% if current_user %>
+        <li class="nav-item active">
+          <%= link_to 'Find your friend!', friend_list_path, class: 'nav-item nav-link'%>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user"></i>

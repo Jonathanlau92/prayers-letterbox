@@ -1,0 +1,8 @@
+<div class="container">
+	<h1> Here are your recommended friends </h1>
+	<% @users.each do |user| %>
+		<div class="row">
+			<%= user.name %>
+		</div>
+	<% end %>
+</div>
