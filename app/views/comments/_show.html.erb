@@ -1,7 +1,5 @@
-<div>
-  <label>Comment</label>
-  <p class="content"><%= comment.content %></p>
+<li class="list-group-item">
+  <span class="comment"><%= comment.content %></span>
   <br />
-  <label>Username</label>
-  <p class="username"><%= comment.user.email %></p>
-</div>
+  <i>Posted By: <%= comment.user.email %></i>
+</li>
