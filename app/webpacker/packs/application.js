@@ -26,9 +26,13 @@ import '../src/javascripts/direct_upload';
 
 // For bootstrap popover and tooltip
 document.addEventListener("turbolinks:load", () => {
-  $('[data-toggle="tooltip"]').tooltip()
-  $('[data-toggle="popover"]').popover()
+    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="popover"]').popover()
 })
 
 // Import font-awesome icons
 import "@fortawesome/fontawesome-free/js/all";
+
+// Use jquery in js erb
+import $ from 'jquery';
+global.$ = jQuery;
