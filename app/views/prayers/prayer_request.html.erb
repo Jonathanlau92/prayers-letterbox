@@ -24,7 +24,7 @@
   <%= form_with url: params[:type] == "single" ? send_prayer_email_path(prayer: @prayer, type: 'single') : send_prayer_email_path(prayer: @prayers, type: 'multiple') do |f| %>
     <div class="form-group">
       <label>Receive this prayer request(s) in your inbox!</label>
-      <%= email_field_tag 'email', "", placeholder: 'Email', class: 'form-control col-sm-6' %>
+      <%= email_field_tag 'email', "", placeholder: 'Email', class: 'form-control col-sm-6', value: user_signed_in? ? current_user.email : "" %>
     </div>
     <%= f.submit 'Send', class: 'btn btn-sm btn-warning' %>
   <% end %>
