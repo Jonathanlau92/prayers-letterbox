@@ -1,5 +1,5 @@
 <div class="container">
-  <h1> Here are your recommended friends </h1>
+  <h1> Recommended Friend List </h1>
   <div class="row row-cols-1 row-cols-md-3">
     <% @users.each do |user| %>
         <div class="col-md-4 mb-4">
@@ -12,6 +12,8 @@
             <div class="card-body">
               <h5 class="card-title"> <%= user.name %> </h5>
               <p class="card-text">Email: <%= user.email %></p>
+              <!-- add friend button to be shown in friend list unless user is current_user -->
+              <p style="text-align:center;"><%= button_to 'Add Friends', {}, { class: 'btn btn-sm btn-primary add-friend', data: { user_id: user.id } } %></p>
             </div>
           </div>
         </div>
