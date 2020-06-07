@@ -27,7 +27,6 @@ import 'bootstrap/dist/js/bootstrap';
 
 // Custom javascript from src file
 import '../src/javascripts/direct_upload';
-import '../src/javascripts/friendship';
 
 // For bootstrap popover and tooltip
 document.addEventListener("turbolinks:load", () => {

@@ -23,12 +23,10 @@ class UsersController < ApplicationController
 
   def add_friends
     @friend = User.find(params[:user_id])
-    respond_to do |format|
-      if current_user.friend_request(@friend)
-        format.json { render json: { status: "ok", link: user_path(current_user.id) } }
-      else
-        format.html { redirect_to root_path, alert: 'Please refresh your page.'}
-      end
+    if current_user.friend_request(@friend)
+      redirect_to user_path(current_user.id), notice: 'Successfully requested for friend'
+    else
+      redirect_to root_path, alert: 'Ok it failed. No luck.'
     end
   end
 

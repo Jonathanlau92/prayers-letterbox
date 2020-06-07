@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { confirmations: 'confirmations', registrations: "users/registrations" }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users do
-    post 'add_friends', to: 'users#add_friends', as: :add_friends
+    get 'add_friends', to: 'users#add_friends', as: :add_friends
   end
   resources :prayers, except: :show
   resources :comments
