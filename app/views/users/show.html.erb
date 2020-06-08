@@ -2,10 +2,12 @@
   <h2><%= @user.name %></h2>
   <div class="row">
     <div class="col-sm-4">
-      <div class="shadow p-3 mb-5 bg-white rounded">
+      <div class="border p-3 mb-5 bg-white rounded">
         <div class="row">
           <% if @user.profile_image.attached? %>
             <%= image_tag url_for(@user.profile_image), class: "style-profile-image"%>
+          <% else %>
+            <%= image_pack_tag 'media/src/images/default-user-profile.svg', class: "style-profile-image" %>
           <% end %>
         </div>
         <hr/>
@@ -26,6 +28,15 @@
             <span class="h6">Description: </span>
             <span><%= @user.current_life_stage %></span>
           </p>
+        </div>
+        <hr/>
+        <div class="friend-list">
+          <p class="h4"> Your spiritual friendship </p>
+          <% if @user.friends.present? %>
+            <% @user.friends.each do |friend| %>
+              <%= link_to friend.name, user_path(friend.id) %>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>

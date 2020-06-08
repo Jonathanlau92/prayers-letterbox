@@ -3,25 +3,27 @@
   <div class="row">
     <div class="col-md-8">
       <% @users.each do |user| %>
-        <div class="friend-list">
-          <div class="row">
-            <div class="col-md-2 col-sm-2">
-              <% if user.profile_image.attached? %>
-                <%= image_tag user.profile_image, class: 'profile-avatar' %>
-              <% else %>
-                <%= image_pack_tag 'media/src/images/default-user-profile.svg', class: 'profile-avatar' %>
-              <% end %>
-            </div>
-            <div class="col-md-7 col-sm-7">
-              <h5><a href="#" class="profile-link"><%= user.name %></a></h5>
-              <p><%= user.church %></p>
-              <p class="text-muted"><%= user.current_life_stage %></p>
-            </div>
-            <div class="col-md-3 col-sm-3">
-              <%= link_to 'Add Friend', user_add_friends_path(user.id), class: 'btn btn-sm btn-primary pull-right' %>
+        <% unless current_user.friends_with?(user) %>
+          <div class="friend-list">
+            <div class="row">
+              <div class="col-md-2 col-sm-2">
+                <% if user.profile_image.attached? %>
+                  <%= image_tag user.profile_image, class: 'profile-avatar' %>
+                <% else %>
+                  <%= image_pack_tag 'media/src/images/default-user-profile.svg', class: 'profile-avatar' %>
+                <% end %>
+              </div>
+              <div class="col-md-7 col-sm-7">
+                <h5><a href="#" class="profile-link"><%= user.name %></a></h5>
+                <p><%= user.church %></p>
+                <p class="text-muted"><%= user.current_life_stage %></p>
+              </div>
+              <div class="col-md-3 col-sm-3">
+                <%= link_to 'Add Friend', user_add_friends_path(user.id), class: 'btn btn-sm btn-primary pull-right' unless user == current_user%>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>
