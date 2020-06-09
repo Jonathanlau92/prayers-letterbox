@@ -9,12 +9,14 @@ class PrayersController < ApplicationController
 
   def create
     @prayer = Prayer.new(prayer_params)
+
     @prayer.is_deleted = false
     @prayer.prayer_count = 0
     @prayer.user_particulars = {
       name: params[:your_name]
     }
     @prayer.user = current_user ? current_user : nil
+    
     if @prayer.save!
       flash[:success] = "Your prayer request has been received."
       redirect_to root_path
@@ -75,6 +77,6 @@ class PrayersController < ApplicationController
 
   private
   def prayer_params
-    params.require(:prayer).permit(:request, :user_particulars, :is_deleted, :prayer_count)
+    params.require(:prayer).permit(:request, :user_particulars, :is_deleted, :prayer_count, categories_attributes: [:name])
   end
 end
