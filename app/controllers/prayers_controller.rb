@@ -29,7 +29,8 @@ class PrayersController < ApplicationController
   def prayer_request
     if params[:type] == "single"
       # Order by random then call the first instance. This is to prevent missing ID in between (for eg, if we delete prayer with ID=3)
-      @prayer = Prayer.where(is_deleted: false).order("RANDOM()").first
+      #@prayer = Prayer.where(is_deleted: false).order("RANDOM()").first
+      @prayer = Prayer.find(40)
     elsif params[:type] == "multiple"
       # Currently multiple means 3 prayers
       @prayers = Prayer.where(is_deleted: false).order("RANDOM()").sample(3)
