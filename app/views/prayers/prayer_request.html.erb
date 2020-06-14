@@ -9,6 +9,9 @@
             <% unless @prayer.user_particulars['name'].blank? %>
               <i>Submitted by:</i> <%= @prayer.user_particulars['name'] %>
             <% end %>
+            <br />
+            
+            <i>Categories: </i><%= @prayer.categories.map { |c| c.name }.join(", ").html_safe %>
           </div>
         </div>
       <% elsif params[:type] == "multiple"%>
