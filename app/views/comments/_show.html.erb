@@ -1,0 +1,8 @@
+<li class="list-group-item">
+  <span class="comment"><%= comment.content %></span>
+  <br />
+  <i>Posted By: <%= comment.user.name %></i>
+  <footer class="comment-created-at">
+    <i>At: <%= comment.created_at.in_time_zone("Singapore").strftime("%Y-%m-%d %I:%M %p") %></i>
+  </footer>
+</li>

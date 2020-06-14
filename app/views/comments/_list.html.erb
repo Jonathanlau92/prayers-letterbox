@@ -1,0 +1,36 @@
+<% if params[:type] == "single" %>
+  <hr class="mt-5 mb-4"/>
+  <% if @prayer.comments.count == 0%>
+    <div id="no_comment_alert" class="alert alert-success" role="alert">  
+      No comments yet! Be the first!
+    </div>
+  <% end %>
+  <div class="card bg-light">
+    <div class="card-header">Comments</div>
+      <ul class="list-group list-group-flush">
+        <% if user_signed_in? %>
+          <li class="list-group-item">
+            <%= form_with url: comments_path, model: @comment, class: 'form-mobile-width' do |f| %>
+              <div class="form-group mt-3">
+                <%= f.label 'Encourage your fellow brother and sister today! ' %>
+                <%= text_area_tag 'comment[content]', "", class: 'form-control col-sm-6', rows: "2", required: true %>
+                <%= hidden_field_tag 'comment[prayer_id]', @prayer.id %>
+                <%= hidden_field_tag 'comment[user_id]', current_user.id %>
+                <%= f.submit 'Submit', class: 'btn btn-sm btn-primary mt-3' %>
+              </div>
+            <% end %> 
+          </li>
+          <span id="new_comment"></span>
+        <% else %>
+          <li class="list-group-item">
+            <%= link_to 'Join us', new_user_registration_path %> or <%= link_to 'sign in', new_user_session_path %>!
+          </li>
+        <% end %>
+        <% @prayer.comments.each do |c| %>
+          <%= render 'comments/show', comment: c %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  
+<% end %>

@@ -9,12 +9,14 @@ class PrayersController < ApplicationController
 
   def create
     @prayer = Prayer.new(prayer_params)
+
     @prayer.is_deleted = false
     @prayer.prayer_count = 0
     @prayer.user_particulars = {
       name: params[:your_name]
     }
     @prayer.user = current_user ? current_user : nil
+    
     if @prayer.save!
       flash[:success] = "Your prayer request has been received."
       redirect_to root_path
@@ -27,7 +29,8 @@ class PrayersController < ApplicationController
   def prayer_request
     if params[:type] == "single"
       # Order by random then call the first instance. This is to prevent missing ID in between (for eg, if we delete prayer with ID=3)
-      @prayer = Prayer.where(is_deleted: false).order("RANDOM()").first
+      #@prayer = Prayer.where(is_deleted: false).order("RANDOM()").first
+      @prayer = Prayer.find(40)
     elsif params[:type] == "multiple"
       # Currently multiple means 3 prayers
       @prayers = Prayer.where(is_deleted: false).order("RANDOM()").sample(3)
@@ -75,6 +78,6 @@ class PrayersController < ApplicationController
 
   private
   def prayer_params
-    params.require(:prayer).permit(:request, :user_particulars, :is_deleted, :prayer_count)
+    params.require(:prayer).permit(:request, :user_particulars, :is_deleted, :prayer_count, categories_attributes: [:name])
   end
 end
