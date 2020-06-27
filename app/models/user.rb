@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, :timeoutable, omniauth_providers: %i[facebook]
+         :omniauthable, :timeoutable, omniauth_providers: [:facebook, :google_oauth2]
 
   def self.create_from_provider_data(provider_data)
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do | user |

@@ -27,6 +27,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 # Omniauth providers
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 # Use ActiveRecord Sessions
 gem 'activerecord-session_store', '~> 1.0'
 
