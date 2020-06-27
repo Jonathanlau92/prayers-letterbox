@@ -3,12 +3,30 @@
   <div class="row justify-content-center">
     <%= form_for @prayer, html:{class: 'form-mobile-width'} do |f|%>
       <div class="form-group">
-        <%= f.label 'Your Name (Optional): ' %>
-        <%= text_field_tag 'your_name', "", class: 'form-control' %>
+        <% if user_signed_in? %>
+          Your Name: <i><%= label_tag 'Your_Name', current_user.name %></i>
+        <% else %>
+          <%= f.label 'Your Name (Optional): ' %>
+          <%= text_field_tag 'your_name', "", class: 'form-control' %>
+        <% end %>
       </div>
       <div class="form-group">
         <%= f.label 'Prayer Request: ' %>
         <%= f.text_area :request, class: 'form-control', rows: "5", required: true %>
+      </div>
+      
+      <div class="form-group">
+        <label for="categories">Does your prayer fall into any of these?</label>
+          <select name="prayer[categories_attributes][][name]" id="prayer_categories">
+          <!-- options -->
+            <option></option>
+            <option>Health</option>
+            <option>Peace</option>
+            <option>Church</option>
+            <option>Family</option>
+            <option>Faith</option>
+            <option>Relationships</option>
+         </select>
       </div>
       <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
     <% end %>

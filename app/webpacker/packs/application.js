@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("selectize")
 
 // Use jquery in js erb
 import $ from 'jquery';
@@ -32,6 +33,9 @@ import '../src/javascripts/direct_upload';
 document.addEventListener("turbolinks:load", () => {
     $('[data-toggle="tooltip"]').tooltip()
     $('[data-toggle="popover"]').popover()
+    $("#prayer_categories").selectize({
+        maxItems: 10
+    });
 })
 
 // Import font-awesome icons

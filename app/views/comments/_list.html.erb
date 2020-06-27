@@ -1,18 +1,14 @@
 <% if params[:type] == "single" %>
+  <hr class="mt-5 mb-4"/>
   <% if @prayer.comments.count == 0%>
-    <hr class="mt-5 mb-4"/>
-    <div class="alert alert-success" role="alert">  
+    <div id="no_comment_alert" class="alert alert-success" role="alert">  
       No comments yet! Be the first!
     </div>
   <% end %>
-  <div class="card bg-light mt-5 mb-4">
+  <div class="card bg-light">
     <div class="card-header">Comments</div>
       <ul class="list-group list-group-flush">
-        <% @prayer.comments.each do |c| %>
-          <%= render 'comments/show', comment: c %>
-        <% end %>
         <% if user_signed_in? %>
-          <span id="new_comment">
           <li class="list-group-item">
             <%= form_with url: comments_path, model: @comment, class: 'form-mobile-width' do |f| %>
               <div class="form-group mt-3">
@@ -24,10 +20,14 @@
               </div>
             <% end %> 
           </li>
+          <span id="new_comment"></span>
         <% else %>
           <li class="list-group-item">
             <%= link_to 'Join us', new_user_registration_path %> or <%= link_to 'sign in', new_user_session_path %>!
           </li>
+        <% end %>
+        <% @prayer.comments.each do |c| %>
+          <%= render 'comments/show', comment: c %>
         <% end %>
       </ul>
     </div>
