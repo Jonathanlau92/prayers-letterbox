@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_04_144508) do
+ActiveRecord::Schema.define(version: 2020_06_27_152621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,15 @@ ActiveRecord::Schema.define(version: 2020_06_04_144508) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "identities", force: :cascade do |t|
+    t.string "uid"
+    t.string "provider"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_identities_on_user_id"
+  end
+
   create_table "prayers", force: :cascade do |t|
     t.text "request"
     t.json "user_particulars"
@@ -66,14 +75,6 @@ ActiveRecord::Schema.define(version: 2020_06_04_144508) do
     t.index ["user_id"], name: "index_prayers_on_user_id"
   end
 
-  create_table "sessions", force: :cascade do |t|
-    t.string "session_id", null: false
-    t.text "data"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
-    t.index ["updated_at"], name: "index_sessions_on_updated_at"
-
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -83,7 +84,16 @@ ActiveRecord::Schema.define(version: 2020_06_04_144508) do
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
-  
+
+  create_table "sessions", force: :cascade do |t|
+    t.string "session_id", null: false
+    t.text "data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
+    t.index ["updated_at"], name: "index_sessions_on_updated_at"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -98,8 +108,6 @@ ActiveRecord::Schema.define(version: 2020_06_04_144508) do
     t.string "church"
     t.text "current_life_stage"
     t.string "name"
-    t.string "provider"
-    t.string "uid"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -117,5 +125,6 @@ ActiveRecord::Schema.define(version: 2020_06_04_144508) do
   add_foreign_key "categories", "prayers"
   add_foreign_key "comments", "prayers"
   add_foreign_key "comments", "users"
+  add_foreign_key "identities", "users"
   add_foreign_key "prayers", "users"
 end
