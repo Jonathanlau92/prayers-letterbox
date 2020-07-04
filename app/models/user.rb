@@ -14,11 +14,14 @@ class User < ApplicationRecord
       user.skip_confirmation!
     end
   end
+  def self.create_with_omniauth(info)
+    create(name: info['name'])
+  end
   has_one_attached :profile_image
 
   has_many :prayers
   has_many :comments
-  has_many :identities
+  has_many :identities, :dependent => :destroy
 
   validates :name, presence: true
   validates :email, presence: true
