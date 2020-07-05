@@ -19,8 +19,13 @@
                 <p class="text-muted"><%= user.current_life_stage %></p>
               </div>
               <div class="col-md-2 col-sm-2">
-                <%= link_to ('<i class="fas fa-user-plus"></i> Add Friend').html_safe, user_add_friends_path(user.id), id: 'add-friend', class: "btn btn-sm btn-outline-secondary mt-5", remote: true unless user == current_user %>
-                <%= link_to ('<i class="fas fa-check"></i> Request sent').html_safe, '#', class: "btn btn-sm btn-outline-secondary mt-5 disabled d-none", id: 'request-sent' unless user == current_user %>
+                <!-- check if user is current user's pending friend -->
+                <% if current_user.pending_friends.include?(user) %>
+                  <%= link_to ('<i class="fas fa-check"></i> Awaiting request').html_safe, '#', class: "btn btn-sm btn-outline-secondary mt-5 disabled" unless user == current_user %>
+                <% else %>
+                  <%= link_to ('<i class="fas fa-user-plus"></i> Add Friend').html_safe, user_add_friends_path(user.id), id: 'add-friend', class: "btn btn-sm btn-outline-secondary mt-5", remote: true unless user == current_user %>
+                  <%= link_to ('<i class="fas fa-check"></i> Request sent').html_safe, '#', class: "btn btn-sm btn-outline-secondary mt-5 disabled d-none", id: 'request-sent' unless user == current_user %>
+                <% end %>
               </div>
             </div>
         <% end %>
