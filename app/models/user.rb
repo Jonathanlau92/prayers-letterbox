@@ -9,6 +9,9 @@ class User < ApplicationRecord
   has_one_attached :profile_image
   after_create :assign_default_role
 
+  # Friendship links to user
+  has_friendship
+
   def assign_default_role
     self.add_role(:user) if self.roles.blank?
   end

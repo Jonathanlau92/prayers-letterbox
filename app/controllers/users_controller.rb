@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user
+  before_action :set_user, except: [:index, :add_friends]
+
+  def index
+    @users = User.all
+  end
 
   def edit
     
@@ -15,6 +19,14 @@ class UsersController < ApplicationController
   end
 
   def show
+  end
+
+  def add_friends
+    @friend = User.find(params[:user_id])
+    current_user.friend_request(@friend)
+    respond_to do |format|
+      format.json { render json: { friend_name: @friend }, status: :ok, friend: @friend.name }
+    end
   end
 
   private
