@@ -1,13 +1,21 @@
 <div class="container col-lg-10 offset-lg-1">
   <div class="d-flex justify-content-around">
     <%= form_for @user, html: {class: 'form-mobile-width shadow-sm p-5'} do |f|%>
-      <p class="h4 theme-color text-center mb-4">Knowing you better</p>    
+      <p class="h4 theme-color text-center mb-4">Knowing you better</p>   
       <div class="form-group">
-        <%= f.label 'Your church (Optional) ' %>
+        <%= f.label 'Name ' %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label 'Email ' %>
+        <%= f.text_field :email, class: 'form-control' %>
+      </div> 
+      <div class="form-group">
+        <%= f.label 'Your church ' %>
         <%= f.text_field :church, class: 'form-control' %>
       </div>
       <div class="form-group">
-        <%= f.label 'What is your current life stage? (Optional) ' %>
+        <%= f.label 'What is your current life stage? ' %>
         <%= f.text_area :current_life_stage, class: 'form-control', rows: "5" %>
       </div>
       <div>

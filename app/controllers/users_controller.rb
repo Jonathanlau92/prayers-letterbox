@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    if @user.update!(user_params)
       redirect_to root_path, notice: "You have successfully setup your user's profile!"
     else
       redirect_to root_path, alert: "There was an error in setting up your user's profile. Please try again or contact admin."
