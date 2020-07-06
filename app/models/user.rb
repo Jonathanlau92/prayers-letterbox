@@ -12,6 +12,11 @@ class User < ApplicationRecord
   # Friendship links to user
   has_friendship
 
+  # acts_as_target configures your model as ActivityNotification::Target
+  # with parameters as value or custom methods defined in your model as lambda or symbol.
+  # This is an example without any options (default configuration) as the target.
+  acts_as_target
+
   def assign_default_role
     self.add_role(:user) if self.roles.blank?
   end
