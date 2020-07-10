@@ -26,6 +26,22 @@
           <span><%= @user.current_life_stage %></span>
         </p>
       </div>
+      <hr/>
+      <div>
+        <div class="card">
+          <h5 class="p-3"> Pending friend request: </h5>
+          <% @user.friendships.each do |friendship| %>
+            <% if friendship.status === "pending" %>
+              <div class="card-body">
+                <% friend = User.find(friendship.friend_id) %>
+                <p><span> Name: <%= friend.name %></span></p>
+                <p><span> Church: <%= friend.church %></span></p>
+                <hr/>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
     <div class="col-sm-8">
       <h4 class="theme-color text-center"> Your prayer requests 
