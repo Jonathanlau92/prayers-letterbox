@@ -1,5 +1,6 @@
-$( document ).on('ajax:complete', '#add-friend', function(event, data, status, xhr) {
-	console.log("HELLO")
-  $("#add-friend").addClass('d-none');
-  $("#request-sent").removeClass('d-none');
+$( document ).on('ajax:complete', function(event, data, status, xhr) {
+	// Add-friend id 
+	$("#" + event.target.id).addClass('d-none');
+	// request-sent id
+  $("#" + event.target.id).next().removeClass('d-none');
 });
