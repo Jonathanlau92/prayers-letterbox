@@ -35,7 +35,7 @@
           <% if @user.pending_friends or @user.requested_friends %>
             <h5 class="p-3"> Pending friend request: </h5>
             <% @user.friendships.each do |friendship| %>
-              <div class="card-body">
+              <div class="card-body pt-1 pb-1">
                 <% friend = User.find(friendship.friend_id) %>
                 <% if friendship.status === "pending" %>
                   <p><span> Name: <%= friend.name %></span></p>
@@ -47,19 +47,25 @@
                   <%= link_to "Accept", user_accept_request_path(user_id: current_user, friend_id: friendship.friend.id), class: 'btn btn-sm btn-success' %>
                   <%= link_to "Block", user_block_request_path(user_id: current_user, block_id: friendship.friend.id), class: 'btn btn-sm btn-danger' %>
                   <hr/>
+                <% else %>
+                  <span>No pending request!</span>
                 <% end %>
               </div>
             <% end %>
           <% end %>
           <!-- have to separate the two conditions because the user might have a friend list and pending friends at the same time -->
-          <% if @user.friends %>
-            <h5 class="p-3"> Your friends: </h5>
+          <h5 class="p-3"> Your friends: </h5>
+          <% if @user.friends.present? %>
             <% @user.friends.each do |friend| %>
-              <div class="card-body">
+              <div class="card-body pt-1 pb-1">
                 <i><%= image_tag url_for(friend.profile_image), class: 'icon-size' if friend.profile_image.attached? %></i>
                 <%= link_to friend.name, user_path(friend.id) %>
               </div>
             <% end %>
+          <% else %>
+            <div class="card-body pt-1">
+              <span>Meet a new friend today!</span>
+            </div>
           <% end %>
         </div>
       </div>
