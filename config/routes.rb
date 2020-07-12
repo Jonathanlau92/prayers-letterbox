@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users do
     get 'add_friends', to: 'users#add_friends', as: :add_friends
+    get 'accept_request', to: 'users#accept_request', as: :accept_request
   end
   get '/friend-list', to: 'users#index', as: :friend_list
 
