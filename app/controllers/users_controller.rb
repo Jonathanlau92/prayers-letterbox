@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, except: [:index, :add_friends, :accept_request]
+  before_action :set_user, except: [:index, :add_friends, :accept_request, :block_request]
 
   def index
     @users = User.all
@@ -35,6 +35,15 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user.id), notice: 'Accept friend request!'
     else
       redirect_to root_path, alert: 'Accepting friend request has failed. Please contact admin'
+    end
+  end
+
+  def block_request
+    @friend = User.find_by(id: params[:block_id])
+    if current_user.block_friend(@friend)
+      redirect_to user_path(current_user.id), notice: 'Blocked friend request successfully!'
+    else
+      redirect_to root_path, alert: 'Blocked friend request has failed. Please contact admin!'
     end
   end
 

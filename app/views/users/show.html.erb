@@ -45,7 +45,7 @@
                   <p><span> Name: <%= friendship.friend.name %></span></p>
                   <p><span> Church: <%= friendship.friend.church %></span></p>
                   <%= link_to "Accept", user_accept_request_path(user_id: current_user, friend_id: friendship.friend.id), class: 'btn btn-sm btn-success' %>
-                  <%= link_to "Block", '#', class: 'btn btn-sm btn-danger' %>
+                  <%= link_to "Block", user_block_request_path(user_id: current_user, block_id: friendship.friend.id), class: 'btn btn-sm btn-danger' %>
                   <hr/>
                 <% end %>
               </div>
@@ -56,7 +56,7 @@
             <h5 class="p-3"> Your friends: </h5>
             <% @user.friends.each do |friend| %>
               <div class="card-body">
-                <i><%= image_tag url_for(friend.profile_image), class: 'icon-size'%></i>
+                <i><%= image_tag url_for(friend.profile_image), class: 'icon-size' if friend.profile_image.attached? %></i>
                 <%= link_to friend.name, user_path(friend.id) %>
               </div>
             <% end %>

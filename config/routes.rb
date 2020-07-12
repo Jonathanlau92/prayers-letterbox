@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :users do
     get 'add_friends', to: 'users#add_friends', as: :add_friends
     get 'accept_request', to: 'users#accept_request', as: :accept_request
+    get 'block_request', to: 'users#block_request', as: :block_request
   end
   get '/friend-list', to: 'users#index', as: :friend_list
 
