@@ -23,6 +23,14 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+#Authentication
+gem 'devise'
+# Omniauth providers
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+# Use ActiveRecord Sessions
+gem 'activerecord-session_store', '~> 1.0'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
@@ -31,9 +39,6 @@ gem 'dotenv-rails', groups: [:development, :test]
 
 # Rollbar for error monitoring
 gem 'rollbar'
-
-#Authentication
-gem 'devise'
 
 #Admin portal
 gem "administrate"

@@ -6,11 +6,8 @@
         <%=@prayer.request%>
         <div class="row mb-3">
           <div class="col-sm-12">
-            <% unless @prayer.user_particulars['name'].blank? %>
-              <i>Submitted by:</i> <%= @prayer.user_particulars['name'] %>
-            <% end %>
+            <i>Submitted by:</i><%= render 'name', prayer: @prayer %>
             <br />
-            
             <i>Categories: </i><%= @prayer.categories.map { |c| c.name }.join(", ").html_safe %>
           </div>
         </div>
