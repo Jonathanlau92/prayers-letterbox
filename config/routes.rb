@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   post 'report-spam', to: 'prayers#report_spam', as: :report_spam
 
   get 'about-us', to: 'pages#about_us', as: :about_us
+  get 'privacy-policy', to: 'pages#privacy_policy', as: :privacy_policy
 
   root to: 'prayers#index'
 end
