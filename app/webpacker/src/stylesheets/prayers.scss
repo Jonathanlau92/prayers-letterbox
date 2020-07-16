@@ -58,7 +58,11 @@ p.lord-prayer {
 }
 
 svg.icon-font-size {
-    font-size: 1.2em !important;
+    font-size: 1.2em;
+}
+
+.spam-container svg.icon-font-size {
+    font-size: 0.8em;
 }
 
 .theme-color {
