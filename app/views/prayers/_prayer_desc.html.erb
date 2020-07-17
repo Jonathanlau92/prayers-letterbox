@@ -2,14 +2,14 @@
 <div class="row">
     <div class="col-sm-12">
     <label><b>Pray for: </b></label>
-    <%=@prayer.request%>
+    <%=p.request%>
     </div>
 </div>
 <div class="row spam-container">
     <div class="col-sm-12">
-    <i>Submitted by:</i><%= render 'name', prayer: @prayer %>
+    <i>Submitted by:</i><%= render 'name', p: p %>
     <%# <i>Categories: </i><%= @prayer.categories.map { |c| c.name }.join(", ").html_safe %>
-    <%= render 'spam_button', id: @prayer.id %>
+    <%= render 'spam_button', id: p.id %>
     </div>
 </div>
 
