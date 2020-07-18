@@ -1,5 +1,5 @@
 class PrayersController < ApplicationController
-  before_action :set_prayer, only: [:edit, :update]
+  before_action :set_prayer, only: [:edit, :update, :destroy]
   def index
     @prayers = Prayer.all
   end
@@ -37,6 +37,16 @@ class PrayersController < ApplicationController
       redirect_to user_path(current_user.id)
     else
       flash[:alert] = "Prayer not updated due to error. Please contact in-charge."
+      redirect_to root_path
+    end
+  end
+
+  def destroy
+    if @prayer.destroy
+      flash[:success] = "Prayer has been successfully deleted."
+      redirect_to user_path(current_user.id)
+    else
+      flash[:alert] = "Prayer not deleted due to error. Please contact in-charge."
       redirect_to root_path
     end
   end
