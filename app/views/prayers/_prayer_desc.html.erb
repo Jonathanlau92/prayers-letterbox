@@ -1,0 +1,22 @@
+<%summaryId='collapseSummary'+p.id.to_s%>
+<div class="row">
+    <div id="summary" class="col-sm-12">
+        <label><b>Pray for: </b></label>
+        <%if p.request.length >= 70%>
+            <p class="collapse" id="<%=summaryId%>">
+                <%=p.request%>
+            </p>
+            <a class="collapsed" data-toggle="collapse" href="<%="#"+summaryId%>" aria-expanded="false" aria-controls="<%=summaryId%>"></a>
+        <%else%>
+            <%=p.request%>
+        <%end%>
+    </div>
+</div>
+<div class="row spam-container">
+    <div class="col-sm-12">
+    <i>Submitted by:</i><%= render 'name', p: p %>
+    <%# <i>Categories: </i><%= @prayer.categories.map { |c| c.name }.join(", ").html_safe %>
+    <%= render 'spam_button', id: p.id %>
+    </div>
+</div>
+

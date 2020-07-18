@@ -1,29 +1,24 @@
 <div class="container mt-5">
   <div class="row">
     <div id="disp_prayer" class="col-sm-12 text-wrap">
-      <label><b>Pray for: </b></label>
       <% if params[:type] == "single" %>
-        <%=@prayer.request%>
-        <div class="row mb-3">
-          <div class="col-sm-12">
-            <% unless @prayer.user_particulars['name'].blank? %>
-              <i>Submitted by:</i> <%= @prayer.user_particulars['name'] %>
-            <% end %>
-            <br />
-            
-            <i>Categories: </i><%= @prayer.categories.map { |c| c.name }.join(", ").html_safe %>
-          </div>
-        </div>
+        <%= render 'prayer_desc', p: @prayer %>
       <% elsif params[:type] == "multiple"%>
-        <% @prayers.each do |prayer| %>
-          <ul>
-            <li><%= prayer.request %></li>
-          </ul>
-        <% end %>
+      
+        <div class="row">
+          <% @prayers.each do |prayer| %>
+              <div class="col-md-4">
+                <div class="card card-body h-100">
+                    <%= render 'prayer_desc', p: prayer %>
+                </div>
+              </div>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
   <!-- condition to send different variables to email using ternary operator -->
+  <hr />
   <%= form_with url: params[:type] == "single" ? send_prayer_email_path(prayer: @prayer, type: 'single') : send_prayer_email_path(prayer: @prayers, type: 'multiple') do |f| %>
     <div class="form-group">
       <label>Receive this prayer request(s) in your inbox!</label>

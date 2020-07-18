@@ -1,0 +1,5 @@
+<% if !p.user.blank? %>
+  <%= p.user.name %>
+<% else %>
+  <%= p.user_particulars['name'].present? ? p.user_particulars['name'] : 'Anonymous' %>
+<% end %>

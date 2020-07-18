@@ -64,6 +64,14 @@ ActiveRecord::Schema.define(version: 2020_07_05_015354) do
     t.integer "blocker_id"
     t.integer "status"
     t.index ["friendable_id", "friend_id"], name: "index_friendships_on_friendable_id_and_friend_id", unique: true
+
+  create_table "identities", force: :cascade do |t|
+    t.string "uid"
+    t.string "provider"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_identities_on_user_id"
   end
 
   create_table "prayers", force: :cascade do |t|
@@ -85,6 +93,15 @@ ActiveRecord::Schema.define(version: 2020_07_05_015354) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.string "session_id", null: false
+    t.text "data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
+    t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -118,5 +135,6 @@ ActiveRecord::Schema.define(version: 2020_07_05_015354) do
   add_foreign_key "categories", "prayers"
   add_foreign_key "comments", "prayers"
   add_foreign_key "comments", "users"
+  add_foreign_key "identities", "users"
   add_foreign_key "prayers", "users"
 end
