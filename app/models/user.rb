@@ -19,6 +19,13 @@ class User < ApplicationRecord
   end
   has_one_attached :profile_image
 
+  # Friendship links to user
+  has_friendship
+
+  def assign_default_role
+    self.add_role(:user) if self.roles.blank?
+  end
+  
   has_many :prayers
   has_many :comments
   has_many :identities, :dependent => :destroy
