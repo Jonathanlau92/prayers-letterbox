@@ -95,15 +95,23 @@
             <th scope="col">#</th>
             <th scope="col">Prayer</th>
             <th scope="col">Posted on</th>
+            <% if @user === current_user %>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            <% end %>
           </tr>
         </thead>
         <tbody>
-          <% @user.prayers.each_with_index do |prayer, index| %>
+          <% @user.prayers.order(created_at: :desc).each_with_index do |prayer, index| %>
             <tr>
               <th scope="row"><%= index + 1 %></th>
               <!-- link to prayer SHOW page next time -->
               <td><%= prayer.request %></td>
               <td><%= prayer.created_at.strftime('%d/%m/%Y')%></td>
+              <% if @user === current_user %>
+                <td><%= link_to 'Edit', edit_prayer_path(prayer.id), class: 'btn btn-sm btn-success'%></td>
+                <td><%= link_to 'X', prayer_path(prayer.id), method: :delete, data: {confirm: "Are you sure you want to delete this prayer?"}, class: 'btn btn-sm btn-danger'%></td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>

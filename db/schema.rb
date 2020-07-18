@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2020_07_05_015354) do
     t.integer "blocker_id"
     t.integer "status"
     t.index ["friendable_id", "friend_id"], name: "index_friendships_on_friendable_id_and_friend_id", unique: true
+  end
 
   create_table "identities", force: :cascade do |t|
     t.string "uid"

@@ -30,4 +30,9 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+ pundit:
+   default: 'You cannot perform this action.'
+   prayer_policy:
+     edit?: 'You cannot edit this prayer due to error. Please contact admins for help!'
+     update?: 'You cannot update this prayer due to error. Please contact admins for help!'
+     destroy?: 'You cannot delete this prayer due to error. Please contact admins for help!'
