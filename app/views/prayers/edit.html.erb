@@ -1,0 +1,12 @@
+<h3 align="center" class="mt-3">How can we pray for you?</h3>
+<div class="container pb-5 pt-5">
+  <div class="row justify-content-center">
+    <%= form_for @prayer, html:{class: 'form-mobile-width'} do |f|%>
+      <div class="form-group">
+        <%= f.label 'Prayer Request: ' %>
+        <%= f.text_area :request, class: 'form-control', rows: "5", required: true %>
+      </div>
+      <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
+    <% end %>
+  </div>
+</div>

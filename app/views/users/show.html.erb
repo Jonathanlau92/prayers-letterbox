@@ -39,15 +39,17 @@
             <th scope="col">#</th>
             <th scope="col">Prayer</th>
             <th scope="col">Posted on</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
-          <% @user.prayers.each_with_index do |prayer, index| %>
+          <% @user.prayers.order(created_at: :desc).each_with_index do |prayer, index| %>
             <tr>
               <th scope="row"><%= index + 1 %></th>
               <!-- link to prayer SHOW page next time -->
               <td><%= prayer.request %></td>
               <td><%= prayer.created_at.strftime('%d/%m/%Y')%></td>
+              <td><%= link_to 'Edit', edit_prayer_path(prayer.id), class: 'btn btn-sm btn-success'%></td>
             </tr>
           <% end %>
         </tbody>

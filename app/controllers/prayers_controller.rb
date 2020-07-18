@@ -1,4 +1,5 @@
 class PrayersController < ApplicationController
+  before_action :set_prayer, only: [:edit, :update]
   def index
     @prayers = Prayer.all
   end
@@ -23,6 +24,20 @@ class PrayersController < ApplicationController
     else
       flash[:alert] = "There was an error in submitting your prayer request. Please try again!"
       render :new
+    end
+  end
+
+  def edit
+    
+  end
+
+  def update
+    if @prayer.update(prayer_params)
+      flash[:success] = "Prayer has been updated successfully."
+      redirect_to user_path(current_user.id)
+    else
+      flash[:alert] = "Prayer not updated due to error. Please contact in-charge."
+      redirect_to root_path
     end
   end
 
@@ -78,5 +93,9 @@ class PrayersController < ApplicationController
   private
   def prayer_params
     params.require(:prayer).permit(:request, :user_particulars, :is_deleted, :prayer_count, categories_attributes: [:name])
+  end
+
+  def set_prayer
+    @prayer = Prayer.find(params[:id])
   end
 end
