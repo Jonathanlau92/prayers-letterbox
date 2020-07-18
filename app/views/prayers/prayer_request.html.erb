@@ -2,13 +2,18 @@
   <div class="row">
     <div id="disp_prayer" class="col-sm-12 text-wrap">
       <% if params[:type] == "single" %>
-        <%= render 'prayer_desc', prayer: @prayer %>
+        <%= render 'prayer_desc', p: @prayer %>
       <% elsif params[:type] == "multiple"%>
-        <% @prayers.each do |prayer| %>
-          <ul>
-            <li><%= prayer.request %></li>
-          </ul>
-        <% end %>
+      
+        <div class="row">
+          <% @prayers.each do |prayer| %>
+              <div class="col-md-4">
+                <div class="card card-body h-100">
+                    <%= render 'prayer_desc', p: prayer %>
+                </div>
+              </div>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>

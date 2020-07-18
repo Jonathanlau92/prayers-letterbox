@@ -1,5 +1,5 @@
-<% if !prayer.user.blank? %>
-  <%= prayer.user.name %>
+<% if !p.user.blank? %>
+  <%= p.user.name %>
 <% else %>
-  <%= prayer.user_particulars['name'].present? ? prayer.user_particulars['name'] : 'Anonymous' %>
+  <%= p.user_particulars['name'].present? ? p.user_particulars['name'] : 'Anonymous' %>
 <% end %>

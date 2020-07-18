@@ -36,12 +36,10 @@
               <tr>
                 <td><%= prayer.request%></td>
                 <td>
-                  <%= render 'name', prayer: prayer %>
+                  <%= render 'name', p: prayer %>
                 </td>
                 <td>
-                  <%= link_to report_spam_path(prayer_id: prayer.id), method: :post, class: 'tooltips', data: { confirm: 'Are you sure you want to report this prayer request as spam?', toggle: 'tooltip', placement: 'bottom', original_title: 'Report as spam!' } do %>
-                    <%= fa_icon('exclamation-circle 1x', type: :solid, style: 'color: red', class: 'icon-font-size')%>
-                  <% end %>
+                  <%= render 'spam_button', id: prayer.id %>
                 </td>
               </tr>
             <% end %>
