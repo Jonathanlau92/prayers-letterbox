@@ -40,3 +40,6 @@ import "@fortawesome/fontawesome-free/js/all";
 // Use jquery in js erb
 import $ from 'jquery';
 global.$ = jQuery;
+
+// Import custom js
+import '../src/javascripts/add_friend';

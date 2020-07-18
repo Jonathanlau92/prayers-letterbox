@@ -1,0 +1,35 @@
+<div class="container">
+  <h1> Recommended Friend List </h1>
+  <div class="row ">
+    <div class="col-md-12">
+      <!-- the SQL below is to put current_user to the top of the list -->
+      <% @users.order("CASE WHEN name = '#{current_user.name}' THEN 1 ELSE 2 END, name").each_with_index do |user, index| %>
+        <% unless current_user.friends_with?(user) %>
+            <div class="friend-list row">
+              <div class="col-md-2 col-sm-2 ">
+                <% if user.profile_image.attached? %>
+                  <%= image_tag user.profile_image, class: 'profile-avatar' %>
+                <% else %>
+                  <%= image_pack_tag 'media/src/images/default-user-profile.svg', class: 'profile-avatar' %>
+                <% end %>
+              </div>
+              <div class="col-md-7 col-sm-7">
+                <h5><%= link_to user.name, user_path(user.id), class: "profile-link" %></h5>
+                <p><%= user.church %></p>
+                <p class="text-muted"><%= user.current_life_stage %></p>
+              </div>
+              <div class="col-md-2 col-sm-2">
+                <!-- check if user is current user's pending friend -->
+                <% if current_user.pending_friends.include?(user) %>
+                  <%= link_to ('<i class="fas fa-check"></i> Awaiting request').html_safe, '#', class: "btn btn-sm btn-outline-secondary mt-5 disabled" unless user == current_user %>
+                <% else %>
+                  <%= link_to ('<i class="fas fa-user-plus"></i> Add Friend').html_safe, user_add_friends_path(user.id), id: "add-friend-#{index}", class: "btn btn-sm btn-outline-secondary mt-5 add-friend", remote: true unless user == current_user %>
+                  <%= link_to ('<i class="fas fa-check"></i> Request sent').html_safe, '#', id: "request-sent-#{index}", class: "btn btn-sm btn-outline-secondary mt-5 disabled d-none request-sent" unless user == current_user %>
+                <% end %>
+              </div>
+            </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
