@@ -1,5 +1,7 @@
 class PrayersController < ApplicationController
   before_action :set_prayer, only: [:edit, :update, :destroy]
+  after_action :verify_authorized, only: [:edit, :update, :destroy]
+
   def index
     @prayers = Prayer.all
   end
@@ -28,10 +30,11 @@ class PrayersController < ApplicationController
   end
 
   def edit
-    
+    authorize @prayer
   end
 
   def update
+    authorize @prayer
     if @prayer.update(prayer_params)
       flash[:success] = "Prayer has been updated successfully."
       redirect_to user_path(current_user.id)
@@ -42,6 +45,7 @@ class PrayersController < ApplicationController
   end
 
   def destroy
+    authorize @prayer
     if @prayer.destroy
       flash[:success] = "Prayer has been successfully deleted."
       redirect_to user_path(current_user.id)
