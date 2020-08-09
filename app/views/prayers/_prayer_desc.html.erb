@@ -15,7 +15,9 @@
 <div class="row spam-container">
     <div class="col-sm-12">
     <i>Submitted by:</i><%= render 'name', p: p %>
-    <%# <i>Categories: </i><%= @prayer.categories.map { |c| c.name }.join(", ").html_safe %>
+    <br/>
+    <i>Categories: </i><%= p.categories.map { |c| c.name }.join(", ").html_safe %>
+    <br/>
     <%= render 'spam_button', id: p.id %>
     </div>
 </div>

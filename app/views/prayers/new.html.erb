@@ -15,7 +15,7 @@
         <%= f.text_area :request, class: 'form-control', rows: "5", required: true %>
       </div>
       
-      <%# <div class="form-group">
+      <div class="form-group">
         <label for="categories">Does your prayer fall into any of these?</label>
           <select name="prayer[categories_attributes][][name]" id="prayer_categories">
           <!-- options -->
@@ -27,7 +27,7 @@
             <option>Faith</option>
             <option>Relationships</option>
          </select>
-      </div> %>
+      </div>
       <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
     <% end %>
   </div>
