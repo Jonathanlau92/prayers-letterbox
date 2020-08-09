@@ -106,7 +106,7 @@ class PrayersController < ApplicationController
 
   private
   def prayer_params
-    params.require(:prayer).permit(:request, :user_particulars, :is_deleted, :prayer_count, categories_attributes: [:name])
+    params.require(:prayer).permit(:request, :user_particulars, :is_deleted, :prayer_count, :status, categories_attributes: [:name])
   end
 
   def set_prayer

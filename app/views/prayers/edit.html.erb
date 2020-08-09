@@ -6,6 +6,11 @@
         <%= f.label 'Prayer Request: ' %>
         <%= f.text_area :request, class: 'form-control', rows: "5", required: true %>
       </div>
+      <div class="form-group">
+        <%= f.label 'Status: '%>
+        <%= f.select :status, Prayer.statuses.keys.to_a %>
+      </div>
+      
       <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
     <% end %>
   </div>

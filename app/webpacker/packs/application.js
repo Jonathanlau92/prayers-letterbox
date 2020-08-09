@@ -32,6 +32,14 @@ document.addEventListener("turbolinks:load", () => {
     $("#prayer_categories").selectize({
         maxItems: 10
     });
+
+    $('#prayer_status').selectize({
+        create: true,
+        sortField: 'text'
+    });
+
+    //add "why you want to change status?"
+    $('#prayer_status').change();
 })
 
 // Import font-awesome icons
