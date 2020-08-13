@@ -4,11 +4,13 @@
     <%= form_for @prayer, html:{class: 'form-mobile-width'} do |f|%>
       <div class="form-group">
         <%= f.label 'Prayer Request: ' %>
+        <div id="change_status_prompt"></div>
         <%= f.text_area :request, class: 'form-control', rows: "5", required: true %>
       </div>
       <div class="form-group">
         <%= f.label 'Status: '%>
         <%= f.select :status, Prayer.statuses.keys.to_a %>
+        <%= f.hidden_field :status, :id => 'curr_status' %>
       </div>
       
       <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>

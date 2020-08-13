@@ -38,8 +38,15 @@ document.addEventListener("turbolinks:load", () => {
         sortField: 'text'
     });
 
-    //add "why you want to change status?"
-    $('#prayer_status').change();
+    $('#prayer_status').change(function() {
+        if ($("#curr_status").val() !== $(this).val()) {
+            $("#change_status_prompt").addClass("mb-3");
+            $("#change_status_prompt").html("<i>Why do you want to change status?</i>");
+        } else {
+            $("#change_status_prompt").removeClass();
+            $("#change_status_prompt").html("");
+        }
+    });
 })
 
 // Import font-awesome icons
