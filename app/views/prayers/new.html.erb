@@ -28,6 +28,15 @@
             <option>Relationships</option>
          </select>
       </div>
+      <% if user_signed_in? %>
+        <div class="form-group">
+          <%= f.label :private, 'Make your prayer private?' %>
+          <%= f.check_box :private %>
+          <br/>
+          <span class="font-italic text-warning">A private prayer is one that only your friends can see!</span>
+          <br/>
+        </div>
+      <% end %>
       <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
     <% end %>
   </div>
