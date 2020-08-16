@@ -1,5 +1,16 @@
-<div class="container p-4">
-  <h2><%= @user.name %></h2>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <h2><%= @user.name %></h2>      
+    </div>
+    <% if @user == current_user %>
+      <div class="col-sm-6">
+        <%= link_to new_prayer_path, class: 'btn btn-outline-primary float-right' do %>
+          <span><i class="fas fa-plus"></i> Add prayer </span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
   <div class="row">
     <div class="col-sm-4 p-3">
       <div class="row">
@@ -86,15 +97,14 @@
           <% end %>
         <% end %>
       <% end %>
-      <h4 class="theme-color text-center"> Your prayer requests 
-        <%= fa_icon('pray 1x', type: :solid, class: 'theme-color icon-font-size') %>
-      </h4>
-      <table class="table table-striped">
+      <table class="table table-striped table-hover">
         <thead>
-          <tr class="bg-primary">
-            <th scope="col">#</th>
-            <th scope="col">Prayer</th>
-            <th scope="col">Posted on</th>
+          <tr class="bg-white">
+            <th colspan='3'>
+              <h4 class="text-left"> Your prayer requests 
+                <%= fa_icon('pray 1x', type: :solid, class: 'icon-font-size') %>
+              </h4>
+            </th>
             <% if @user === current_user %>
               <th scope="col"></th>
               <th scope="col"></th>
