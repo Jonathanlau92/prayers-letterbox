@@ -41,8 +41,18 @@
                   <span> <i class="far fa-user mr-3"></i> <%= friend.name %></span>
                   <hr/>
                 <% elsif friendship.status === "requested" %>
-                  <p><span> Name: <%= friendship.friend.name %></span></p>
-                  <p><span> Church: <%= friendship.friend.church %></span></p>
+                  <p>Name: 
+                    <%= link_to user_path(friendship.friend.id) do %> 
+                      <span class="text-dark"> 
+                        <%= friendship.friend.name %>
+                      </span>
+                    <%end%>
+                  </p>
+                  <p>
+                    <span> 
+                      Church: <%= friendship.friend.church %>
+                    </span>
+                  </p>
                   <% if @user === current_user %>
                     <%= link_to "Accept", user_accept_request_path(user_id: current_user, friend_id: friendship.friend.id), class: 'btn btn-sm btn-success' %>
                     <%= link_to "Block", user_block_request_path(user_id: current_user, block_id: friendship.friend.id), class: 'btn btn-sm btn-danger' %>
