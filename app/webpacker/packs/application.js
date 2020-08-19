@@ -24,29 +24,13 @@ import 'bootstrap/dist/js/bootstrap';
 
 // Custom javascript from src file
 import '../src/javascripts/direct_upload';
+import initPrayerFields from '../src/javascripts/prayer_logic';
 
 // For bootstrap popover and tooltip
 document.addEventListener("turbolinks:load", () => {
     $('[data-toggle="tooltip"]').tooltip()
     $('[data-toggle="popover"]').popover()
-    $("#prayer_categories").selectize({
-        maxItems: 10
-    });
-
-    $('#prayer_status').selectize({
-        create: true,
-        sortField: 'text'
-    });
-
-    $('#prayer_status').change(function() {
-        if ($("#curr_status").val() !== $(this).val()) {
-            $("#change_status_prompt").addClass("mb-3");
-            $("#change_status_prompt").html("<i class='text-warning'>Click submit if you confirm the change of prayer status.</i>");
-        } else {
-            $("#change_status_prompt").removeClass();
-            $("#change_status_prompt").html("");
-        }
-    });
+    initPrayerFields();
 })
 
 // Import font-awesome icons
