@@ -9,7 +9,7 @@ export default function initPrayerFields() {
     });
 
     $('#prayer_status').change(function() {
-        if ($("#curr_status").val() !== $(this).val()) {
+        if ($("input[name=curr_status]").val() !== $(this).val()) {
             $("#change_status_prompt").addClass("mb-3");
             $("#change_status_prompt").html("<i class='text-warning'>Click submit if you confirm the change of prayer status.</i>");
         } else {
