@@ -6,6 +6,13 @@
         <%= f.label 'Prayer Request: ' %>
         <%= f.text_area :request, class: 'form-control', rows: "5", required: true %>
       </div>
+      <div class="form-group">
+        <%= f.label 'Status: '%>
+        <div id="change_status_prompt"></div>
+        <%= f.select :status, Prayer.statuses.keys.to_a %>
+fi        <%= f.hidden_field :status, :name => 'curr_status' %>
+      </div>
+      
       <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
     <% end %>
   </div>
