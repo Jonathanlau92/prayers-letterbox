@@ -106,7 +106,7 @@
             <tr>
               <th scope="row"><%= index + 1 %></th>
               <!-- link to prayer SHOW page next time -->
-              <td><%= prayer.request %></td>
+              <td> <%= link_to prayer.request, show_prayer_path(prayer.id) %></td>
               <td><%= prayer.created_at.strftime('%d/%m/%Y')%></td>
               <% if @user === current_user %>
                 <td><%= link_to 'Edit', edit_prayer_path(prayer.id), class: 'btn btn-sm btn-success'%></td>

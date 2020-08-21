@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :authentications, only: [:destroy]
   resources :comments
   get '/prayer-request', to: 'prayers#prayer_request', as: :prayer_request
+  get '/prayer-request/:id', to: 'prayers#show', as: :show_prayer
   post 'send_prayer_email', to: 'prayers#send_prayer_email', as: :send_prayer_email
   post 'report-spam', to: 'prayers#report_spam', as: :report_spam
 

@@ -33,6 +33,10 @@ class PrayersController < ApplicationController
     authorize @prayer
   end
 
+  def show
+    @prayer=Prayer.find(params[:id])
+  end
+
   def update
     authorize @prayer
     if @prayer.update(prayer_params)
