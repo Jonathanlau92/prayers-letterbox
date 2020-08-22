@@ -24,14 +24,13 @@ import 'bootstrap/dist/js/bootstrap';
 
 // Custom javascript from src file
 import '../src/javascripts/direct_upload';
+import initPrayerFields from '../src/javascripts/prayer_logic';
 
 // For bootstrap popover and tooltip
 document.addEventListener("turbolinks:load", () => {
     $('[data-toggle="tooltip"]').tooltip()
     $('[data-toggle="popover"]').popover()
-    $("#prayer_categories").selectize({
-        maxItems: 10
-    });
+    initPrayerFields();
 })
 
 // Import font-awesome icons
