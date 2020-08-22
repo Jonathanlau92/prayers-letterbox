@@ -32,31 +32,41 @@
       <div>
         <div class="card">
           <!-- Check if user has pending friends or being requested by someone -->
-          <% if @user.pending_friends or @user.requested_friends %>
-            <h5 class="p-3 text-warning"> Pending friend request: </h5>
+          <% if @user.pending_friends.present? %>
+            <h5 class="p-3 text-warning"> Waiting for replies: </h5>
             <% @user.friendships.each do |friendship| %>
               <div class="card-body pt-1 pb-1">
                 <% friend = User.find(friendship.friend_id) %>
                 <% if friendship.status === "pending" %>
                   <span> <i class="far fa-user mr-3"></i> <%= friend.name %></span>
-                  <hr/>
-                <% elsif friendship.status === "requested" %>
-                  <p>Name: 
-                    <%= link_to user_path(friendship.friend.id) do %> 
-                      <span class="text-dark"> 
-                        <%= friendship.friend.name %>
-                      </span>
-                    <%end%>
-                  </p>
-                  <p>
-                    <span> 
-                      Church: <%= friendship.friend.church %>
-                    </span>
-                  </p>
-                  <% if @user === current_user %>
-                    <%= link_to "Accept", user_accept_request_path(user_id: current_user, friend_id: friendship.friend.id), class: 'btn btn-sm btn-success' %>
-                    <%= link_to "Block", user_block_request_path(user_id: current_user, block_id: friendship.friend.id), class: 'btn btn-sm btn-danger' %>
-                  <% end %>
+                  <hr/>   
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+          <% if @user.requested_friends.present?  %>
+            <h5 class="p-3 text-warning"> Waiting for accept: </h5>
+            <% @user.friendships.each do |friendship| %>
+              <div class="card-body pt-1 pb-1">
+                <% friend = User.find(friendship.friend_id) %>
+                <% if friendship.status === "requested" %>
+                  <div class='row'>
+                    <div class='col-md-6'>
+                      <p>Name: 
+                        <%= link_to user_path(friendship.friend.id) do %> 
+                          <span class="text-dark"> 
+                            <%= friendship.friend.name %>
+                          </span>
+                        <%end%>
+                      </p>
+                    </div>
+                    <div class='col-md-6'>
+                      <% if @user === current_user %>
+                        <%= link_to "Accept", user_accept_request_path(user_id: current_user, friend_id: friendship.friend.id), class: 'btn btn-sm btn-success' %>
+                        <%= link_to "Block", user_block_request_path(user_id: current_user, block_id: friendship.friend.id), class: 'btn btn-sm btn-danger' %>
+                      <% end %>
+                    </div>
+                  </div>
                   <hr/>
                 <% end %>
               </div>
