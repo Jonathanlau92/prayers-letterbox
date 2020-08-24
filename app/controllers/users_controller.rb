@@ -19,6 +19,13 @@ class UsersController < ApplicationController
   end
 
   def show
+    # Only show all prayers if current_user is @user or current_user is friend with @user
+    if (current_user == @user) or current_user.friends_with?(@user)
+      @prayers = @user.prayers
+    else
+      # Only see prayers where private is not true
+      @prayers = @user.prayers.where.not(private: true)
+    end
   end
 
   def add_friends

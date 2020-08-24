@@ -3,7 +3,8 @@ class PrayersController < ApplicationController
   after_action :verify_authorized, only: [:edit, :update, :destroy]
 
   def index
-    @prayers = Prayer.all
+    # Only display non-private prayers
+    @prayers = Prayer.all.where(private: false)
   end
 
   def new
@@ -58,10 +59,10 @@ class PrayersController < ApplicationController
   def prayer_request
     if params[:type] == "single"
       # Order by random then call the first instance. This is to prevent missing ID in between (for eg, if we delete prayer with ID=3)
-      @prayer = Prayer.where(is_deleted: false).order("RANDOM()").first
+      @prayer = Prayer.where(is_deleted: false, private: false).order("RANDOM()").first
     elsif params[:type] == "multiple"
       # Currently multiple means 3 prayers
-      @prayers = Prayer.where(is_deleted: false).order("RANDOM()").sample(3)
+      @prayers = Prayer.where(is_deleted: false, private: false).order("RANDOM()").sample(3)
     end
   end
 
@@ -106,7 +107,7 @@ class PrayersController < ApplicationController
 
   private
   def prayer_params
-    params.require(:prayer).permit(:request, :user_particulars, :is_deleted, :prayer_count, :status, categories_attributes: [:name])
+    params.require(:prayer).permit(:request, :user_particulars, :is_deleted, :prayer_count, :private, :status, categories_attributes: [:name])
   end
 
   def set_prayer
