@@ -26,5 +26,7 @@
     </div>
     <%= f.submit 'Send', class: 'btn btn-sm btn-warning' %>
   <% end %>
-  <%= render 'comments/list' %>
+  <% if params[:type] == "single" %>
+    <%= render 'comments/list' %>
+  <% end %>
 </div>

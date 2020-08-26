@@ -1,0 +1,17 @@
+<div class="container mt-5">
+  <div class="row">
+    <div id="disp_prayer" class="col-sm-12 text-wrap">
+      <%= render 'prayer_desc', p: @prayer %>
+    </div>
+  </div>
+  <!-- condition to send different variables to email using ternary operator -->
+  <hr />
+  <%= form_with url: send_prayer_email_path(prayer: @prayer, type: 'single') do |f| %>
+    <div class="form-group">
+      <label>Receive this prayer request(s) in your inbox!</label>
+      <%= email_field_tag 'email', "", placeholder: 'Email', class: 'form-control col-sm-6', value: user_signed_in? ? current_user.email : "" %>
+    </div>
+    <%= f.submit 'Send', class: 'btn btn-sm btn-warning' %>
+  <% end %>
+  <%= render 'comments/list' %>
+</div>

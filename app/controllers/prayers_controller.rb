@@ -1,5 +1,5 @@
 class PrayersController < ApplicationController
-  before_action :set_prayer, only: [:edit, :update, :destroy]
+  before_action :set_prayer, only: [:edit, :update, :destroy, :show]
   after_action :verify_authorized, only: [:edit, :update, :destroy]
 
   def index
@@ -32,6 +32,9 @@ class PrayersController < ApplicationController
 
   def edit
     authorize @prayer
+  end
+
+  def show
   end
 
   def update
