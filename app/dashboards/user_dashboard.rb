@@ -16,7 +16,9 @@ class UserDashboard < Administrate::BaseDashboard
     remember_created_at: Field::DateTime,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    admin: Field::Boolean,
+    church: Field::String,
+    current_life_stage: Field::String,
+    name: Field::String
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -27,7 +29,6 @@ class UserDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
   id
   email
-  encrypted_password
   reset_password_token
   ].freeze
 
@@ -36,13 +37,11 @@ class UserDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
   id
   email
-  encrypted_password
-  reset_password_token
-  reset_password_sent_at
-  remember_created_at
   created_at
   updated_at
-  admin
+  church
+  current_life_stage
+  name
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -50,11 +49,9 @@ class UserDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
   email
-  encrypted_password
-  reset_password_token
-  reset_password_sent_at
-  remember_created_at
-  admin
+  church
+  current_life_stage
+  name
   ].freeze
 
   # COLLECTION_FILTERS
