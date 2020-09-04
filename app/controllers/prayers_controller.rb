@@ -35,6 +35,7 @@ class PrayersController < ApplicationController
   end
 
   def show
+    authorize @prayer
   end
 
   def update

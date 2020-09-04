@@ -36,3 +36,4 @@ en:
      edit?: 'You cannot edit this prayer due to error. Please contact admins for help!'
      update?: 'You cannot update this prayer due to error. Please contact admins for help!'
      destroy?: 'You cannot delete this prayer due to error. Please contact admins for help!'
+     show?: 'You cannot view this prayer. Please contact admins for help!'
