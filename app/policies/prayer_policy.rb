@@ -12,8 +12,9 @@ class PrayerPolicy < ApplicationPolicy
     user.present? and (user == record.user)
   end
 
-  #can see prayer as long as logged in
+  # Check for user present and whether prayer is private. Also, need to check if the user that creates the prayer is anonymous or not (record.user != nil).
+  # If prayer is from actual user, then allow show (user == record.user)
   def show?
-    user.present?
+    (user.present? and (record.private? ? user.friends_with?(record.user) : true)) or (user == record.user)
   end
 end
