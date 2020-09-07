@@ -1,6 +1,6 @@
 class PrayersController < ApplicationController
   before_action :set_prayer, only: [:edit, :update, :destroy, :show]
-  after_action :verify_authorized, only: [:edit, :update, :destroy]
+  after_action :verify_authorized, only: [:edit, :update, :destroy, :show]
 
   def index
     # Only display non-private prayers
