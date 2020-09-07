@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
   get '/friend-list', to: 'users#index', as: :friend_list
 
-  resources :prayers, except: :show
+  resources :prayers
   resources :authentications, only: [:destroy]
   resources :comments
   get '/prayer-request', to: 'prayers#prayer_request', as: :prayer_request
