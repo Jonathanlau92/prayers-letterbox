@@ -7,7 +7,7 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-
+require("selectize")
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -22,11 +22,23 @@ const images = require.context('../src/images', true)
 // Import bootstrap
 import 'bootstrap/dist/js/bootstrap';
 
+// Custom javascript from src file
+import '../src/javascripts/direct_upload';
+import initPrayerFields from '../src/javascripts/prayer_logic';
+
 // For bootstrap popover and tooltip
 document.addEventListener("turbolinks:load", () => {
-  $('[data-toggle="tooltip"]').tooltip()
-  $('[data-toggle="popover"]').popover()
+    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="popover"]').popover()
+    initPrayerFields();
 })
 
 // Import font-awesome icons
 import "@fortawesome/fontawesome-free/js/all";
+
+// Use jquery in js erb
+import $ from 'jquery';
+global.$ = jQuery;
+
+// Import custom js
+import '../src/javascripts/add_friend';

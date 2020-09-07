@@ -10,13 +10,14 @@ class PrayerDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     request: Field::Text,
-    user_particulars: Field::JSONB.with_options(transform: %i[to_h symbolize_keys], advanced_view: {
-      name: Field::String
-    }),
+    # user_particulars: Field::JSONB.with_options(transform: %i[to_h symbolize_keys], advanced_view: {
+    #   name: Field::String
+    # }),
     is_deleted: Field::Boolean,
     prayer_count: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    private: Field::Boolean
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -27,8 +28,8 @@ class PrayerDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
   id
   request
-  user_particulars
   is_deleted
+  private
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -36,11 +37,11 @@ class PrayerDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
   id
   request
-  user_particulars
   is_deleted
   prayer_count
   created_at
   updated_at
+  private
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -48,9 +49,9 @@ class PrayerDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
   request
-  user_particulars
   is_deleted
   prayer_count
+  private
   ].freeze
 
   # COLLECTION_FILTERS

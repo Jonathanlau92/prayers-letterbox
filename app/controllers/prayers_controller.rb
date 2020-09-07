@@ -1,6 +1,10 @@
 class PrayersController < ApplicationController
+  before_action :set_prayer, only: [:edit, :update, :destroy, :show]
+  after_action :verify_authorized, only: [:edit, :update, :destroy, :show]
+
   def index
-    @prayers = Prayer.all
+    # Only display non-private prayers
+    @prayers = Prayer.all.where(private: false)
   end
 
   def new
@@ -9,12 +13,15 @@ class PrayersController < ApplicationController
 
   def create
     @prayer = Prayer.new(prayer_params)
+
     @prayer.is_deleted = false
     @prayer.prayer_count = 0
     @prayer.user_particulars = {
       name: params[:your_name]
     }
-    if @prayer.save
+    @prayer.user = current_user ? current_user : nil
+    
+    if @prayer.save!
       flash[:success] = "Your prayer request has been received."
       redirect_to root_path
     else
@@ -23,13 +30,43 @@ class PrayersController < ApplicationController
     end
   end
 
+  def edit
+    authorize @prayer
+  end
+
+  def show
+    authorize @prayer
+  end
+
+  def update
+    authorize @prayer
+    if @prayer.update(prayer_params)
+      flash[:success] = "Prayer has been updated successfully."
+      redirect_to user_path(current_user.id)
+    else
+      flash[:alert] = "Prayer not updated due to error. Please contact in-charge."
+      redirect_to root_path
+    end
+  end
+
+  def destroy
+    authorize @prayer
+    if @prayer.destroy
+      flash[:success] = "Prayer has been successfully deleted."
+      redirect_to user_path(current_user.id)
+    else
+      flash[:alert] = "Prayer not deleted due to error. Please contact in-charge."
+      redirect_to root_path
+    end
+  end
+
   def prayer_request
     if params[:type] == "single"
       # Order by random then call the first instance. This is to prevent missing ID in between (for eg, if we delete prayer with ID=3)
-      @prayer = Prayer.where(is_deleted: false).order("RANDOM()").first
+      @prayer = Prayer.where(is_deleted: false, private: false).order("RANDOM()").first
     elsif params[:type] == "multiple"
       # Currently multiple means 3 prayers
-      @prayers = Prayer.where(is_deleted: false).order("RANDOM()").sample(3)
+      @prayers = Prayer.where(is_deleted: false, private: false).order("RANDOM()").sample(3)
     end
   end
 
@@ -74,6 +111,10 @@ class PrayersController < ApplicationController
 
   private
   def prayer_params
-    params.require(:prayer).permit(:request, :user_particulars, :is_deleted, :prayer_count)
+    params.require(:prayer).permit(:request, :user_particulars, :is_deleted, :prayer_count, :private, :status, categories_attributes: [:name])
+  end
+
+  def set_prayer
+    @prayer = Prayer.find(params[:id])
   end
 end

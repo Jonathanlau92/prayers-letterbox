@@ -1,0 +1,156 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <h2><%= @user.name %></h2>      
+    </div>
+    <% if @user == current_user %>
+      <div class="col-sm-6">
+        <%= link_to new_prayer_path, class: 'btn btn-outline-primary float-right' do %>
+          <span><i class="fas fa-plus"></i> Add prayer </span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-sm-4 p-3">
+      <div class="row">
+        <% if @user.profile_image.attached? %>
+          <%= image_tag url_for(@user.profile_image), class: "style-profile-image"%>
+        <% else %>
+          <%= image_pack_tag 'media/src/images/default-user-profile.svg', class: 'style-profile-image' %>
+        <% end %>
+      </div>
+      <hr/>
+      <div class="user-content">
+        <p>
+          <i class="fas fa-signature"></i>
+          <span><%= @user.name %></span>
+        </p>
+        <p>
+          <i class="fas fa-at mr-1"></i>
+          <span><%= @user.email %></span>
+        </p>
+        <p>
+          <i class="fas fa-church"></i>
+          <span><%= @user.church %></span>
+        </p>
+        <p>
+          <i class="fas fa-id-badge mr-2"></i>
+          <span><%= @user.current_life_stage %></span>
+        </p>
+      </div>
+      <hr/>
+      <div>
+        <div class="card">
+          <!-- only you can see your own pending and accepting requests -->
+          <% if current_user == @user %>
+            <!-- Check if user has pending friends or being requested by someone -->
+            <% if @user.pending_friends.present? %>
+              <h5 class="p-3 text-warning"> Waiting for replies: </h5>
+              <% @user.friendships.each do |friendship| %>
+                <div class="card-body pt-1 pb-1">
+                  <% friend = User.find(friendship.friend_id) %>
+                  <% if friendship.status === "pending" %>
+                    <span> <i class="far fa-user mr-3"></i> <%= friend.name %></span>
+                    <hr/>   
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+            <% if @user.requested_friends.present?  %>
+              <h5 class="p-3 text-warning"> Waiting for accept: </h5>
+              <% @user.friendships.each do |friendship| %>
+                <div class="card-body pt-1 pb-1">
+                  <% friend = User.find(friendship.friend_id) %>
+                  <% if friendship.status === "requested" %>
+                    <div class='row'>
+                      <div class='col-md-6'>
+                        <p>Name: 
+                          <%= link_to user_path(friendship.friend.id) do %> 
+                            <span class="text-dark"> 
+                              <%= friendship.friend.name %>
+                            </span>
+                          <%end%>
+                        </p>
+                      </div>
+                      <div class='col-md-6'>
+                        <% if @user === current_user %>
+                          <%= link_to "Accept", user_accept_request_path(user_id: current_user, friend_id: friendship.friend.id), class: 'btn btn-sm btn-success' %>
+                          <%= link_to "Block", user_block_request_path(user_id: current_user, block_id: friendship.friend.id), class: 'btn btn-sm btn-danger' %>
+                        <% end %>
+                      </div>
+                    </div>
+                    <hr/>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <!-- have to separate the two conditions because the user might have a friend list and pending friends at the same time -->
+          <h5 class="p-3 text-success"> Your friends: </h5>
+          <div class="friend-wrapper mb-5 ">
+            <% if @user.friends.present? %>
+              <% @user.friends.each do |friend| %>
+                <div class="card-body pt-1 pb-1">
+                  <!-- <i><%= image_tag url_for(friend.profile_image), class: 'icon-size' if friend.profile_image.attached? %></i> -->
+                  <%= link_to user_path(friend.id) do %>
+                    <span class="mr-3 text-dark"><i class="far fa-user mr-3"></i><%= friend.name %></span>
+                  <% end %>
+                  <hr/>
+                </div>
+              <% end %>
+            <% else %>
+              <div class="card-body pt-1">
+                <span>Meet a new friend today!</span>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <!-- show a message if there is a friend request -->
+      <% if @user == current_user %>
+        <% current_user.friendships.each do |friendship| %>
+          <% if friendship.status === "requested" %>
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+              <span>You have a pending friend request: <%= link_to friendship.friend.name, user_path(friendship.friend.id), target: "_blank" %></span>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr class="bg-primary">
+            <th scope="col">#</th>
+            <th scope="col">Prayer</th>
+            <th scope="col">Status</th>
+            <th scope="col">Posted on</th>
+            <% if @user === current_user %>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @prayers.order(created_at: :desc).each_with_index do |prayer, index| %>
+            <tr>
+              <th scope="row"><%= index + 1 %></th>
+              <!-- link to prayer SHOW page next time -->
+              <td> <%= link_to prayer.request, show_prayer_path(prayer.id) %></td>
+              <td><%= prayer.status %></td>
+              <td><%= prayer.created_at.strftime('%d/%m/%Y')%></td>
+              <% if @user === current_user %>
+                <td><%= link_to 'Edit', edit_prayer_path(prayer.id), class: 'btn btn-sm btn-success'%></td>
+                <td><%= link_to 'X', prayer_path(prayer.id), method: :delete, data: {confirm: "Are you sure you want to delete this prayer?"}, class: 'btn btn-sm btn-danger'%></td>
+              <% end %>     
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

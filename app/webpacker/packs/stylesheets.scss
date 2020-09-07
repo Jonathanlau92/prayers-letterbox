@@ -3,13 +3,16 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Old+Standard+TT&display=swap');
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-
 // Custom CSS references
 @import '../src/stylesheets/prayers';
 @import '../src/stylesheets/navbar';
-
+@import '../src/stylesheets/users';
+// For active storage direct uploads
+@import '../src/stylesheets/direct_upload';
 // Font-awesome icons
 @import '@fortawesome/fontawesome-free';
+//Selectize
+@import "selectize/dist/css/selectize";
+@import "selectize/dist/css/selectize.default";

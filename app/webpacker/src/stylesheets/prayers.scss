@@ -21,7 +21,7 @@ p.lord-prayer {
 }
 
 .form-mobile-width {
-    width: 50%;
+    width: 80%;
 }
 
 .custom-scrollbar {
@@ -58,5 +58,50 @@ p.lord-prayer {
 }
 
 svg.icon-font-size {
-    font-size: 1.2em !important;
+    font-size: 1.2em;
+}
+
+.spam-container svg.icon-font-size {
+    font-size: 0.8em;
+}
+
+.theme-color {
+    color: #4169E1;
+}
+
+.comment {
+    font-size: 18px;
+}
+
+.comment-created-at {
+    font-size: 10px;
+}
+
+#summary {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+#summary p.collapse:not(.show) {
+    height: 42px !important;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+#summary p.collapsing {
+    min-height: 42px !important;
+}
+
+#summary a.collapsed:after {
+    content: 'Read More';
+}
+
+#summary a:not(.collapsed):after {
+    content: 'Read Less';
+}
+
+.selectize-control {
+    width: 50%;
 }

@@ -1,0 +1,27 @@
+<h3 align="center" class="mt-3">How can we pray for you?</h3>
+<div class="container pb-5 pt-5">
+  <div class="row justify-content-center">
+    <%= form_for @prayer, html:{class: 'form-mobile-width'} do |f|%>
+      <div class="form-group">
+        <%= f.label 'Prayer Request: ' %>
+        <%= f.text_area :request, class: 'form-control', rows: "5", required: true %>
+      </div>
+      <div class="form-group">
+        <%= f.label 'Status: '%>
+        <div id="change_status_prompt"></div>
+        <%= f.select :status, Prayer.statuses.keys.to_a %>
+        <%= f.hidden_field :status, :name => 'curr_status' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :private, 'Make your prayer private?' %>
+        <%= f.check_box :private %>
+        <br/>
+        <span class="font-italic text-warning">A private prayer is one that only your friends can see!</span>
+        <br/>
+      </div>
+      
+      <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
+    <% end %>
+  </div>
+  <%= render 'comments/list' %>
+</div>
