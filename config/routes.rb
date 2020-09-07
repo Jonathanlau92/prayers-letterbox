@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   get 'about-us', to: 'pages#about_us', as: :about_us
   get 'privacy-policy', to: 'pages#privacy_policy', as: :privacy_policy
+  get 'releases', to: 'pages#releases', as: :releases
 
 
   root to: 'prayers#index'
